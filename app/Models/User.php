@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -51,6 +52,18 @@ class User extends Authenticatable
     {
         return $this->getAllPermissions()->mapWithKeys(function ($pr) {
             return [$pr['name'] => true];
+        });
+    }
+
+    public $incrementing = false;
+    protected $keyType = 'string';
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            if (!$model->getKey()) {
+                $model->{$model->getKeyName()} = (string) Str::uuid();
+            }
         });
     }
 }

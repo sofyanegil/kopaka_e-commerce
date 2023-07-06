@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
@@ -60,5 +61,17 @@ class Order extends Model
         return Attribute::make(
             get: fn ($value) => \Carbon\Carbon::parse($value)->translatedFormat('1, d F Y'),
         );
+    }
+
+    public $incrementing = false;
+    protected $keyType = 'string';
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            if (!$model->getKey()) {
+                $model->{$model->getKeyName()} = (string) Str::uuid();
+            }
+        });
     }
 }

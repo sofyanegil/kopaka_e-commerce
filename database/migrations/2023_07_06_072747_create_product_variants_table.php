@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_variants', function (Blueprint $table) {
-            $table->id('product_variant_id');
-            $table->foreignId('product_id')->references('product_id')->on('products')->cascadeOnDelete();
+            $table->uuid('product_variant_id')->primary();
+            $table->foreignUuid('product_id')->references('product_id')->on('products')->cascadeOnDelete();
             $table->string('product_variant_name');
             $table->bigInteger('product_variant_price');
             $table->timestamps();
