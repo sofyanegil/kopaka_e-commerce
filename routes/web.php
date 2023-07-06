@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return Inertia::render('index');
 });
+
+// route register
+Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@index')->name('register')->middleware('guest');
+Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@store')->name('register.store')->middleware('guest');
+
+// route login
+Route::get('/login', 'App\Http\Controllers\Auth\LoginController@index')->name('login')->middleware('guest');
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@store')->name('login.store')->middleware('guest');
+
+// route logout
+Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController')->name('logout')->middleware('auth');
