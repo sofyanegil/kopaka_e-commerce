@@ -10,6 +10,7 @@ class ProductImage extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'product_image_id';
     protected $fillable = [
         'product_id',
         'product_image_url',

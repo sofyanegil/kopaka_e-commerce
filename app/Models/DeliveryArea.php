@@ -9,6 +9,7 @@ class DeliveryArea extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'delivery_area_id';
     protected $fillable = [
         'delivery_area_name',
         'delivery_area_price',
