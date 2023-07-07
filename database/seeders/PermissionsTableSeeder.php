@@ -16,6 +16,8 @@ class PermissionsTableSeeder extends Seeder
         // permission profile
         Permission::create(['name' => 'profile.index', 'guard_name' => 'web']);
         Permission::create(['name' => 'profile.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'profile.update', 'guard_name' => 'web']);
+
 
         // permission order history
         Permission::create(['name' => 'orderHistory.index', 'guard_name' => 'web']);
@@ -59,17 +61,17 @@ class PermissionsTableSeeder extends Seeder
         Permission::create(['name' => 'orders.show', 'guard_name' => 'web']);
         Permission::create(['name' => 'orders.edit', 'guard_name' => 'web']);
 
-        // permission store
-        Permission::create(['name' => 'store.index', 'guard_name' => 'web']);
-        Permission::create(['name' => 'store.create', 'guard_name' => 'web']);
-        Permission::create(['name' => 'store.edit', 'guard_name' => 'web']);
-        Permission::create(['name' => 'store.delete', 'guard_name' => 'web']);
+        // permission stores
+        Permission::create(['name' => 'stores.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'stores.create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'stores.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'stores.delete', 'guard_name' => 'web']);
 
         // permission deliveryArea
-        Permission::create(['name' => 'deliveryArea.index', 'guard_name' => 'web']);
-        Permission::create(['name' => 'deliveryArea.create', 'guard_name' => 'web']);
-        Permission::create(['name' => 'deliveryArea.edit', 'guard_name' => 'web']);
-        Permission::create(['name' => 'deliveryArea.delete', 'guard_name' => 'web']);
+        Permission::create(['name' => 'deliveryAreas.index', 'guard_name' => 'web']);
+        Permission::create(['name' => 'deliveryAreas.create', 'guard_name' => 'web']);
+        Permission::create(['name' => 'deliveryAreas.edit', 'guard_name' => 'web']);
+        Permission::create(['name' => 'deliveryAreas.delete', 'guard_name' => 'web']);
 
         // permission sliders
         Permission::create(['name' => 'sliders.index', 'guard_name' => 'web']);

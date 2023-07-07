@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->uuid('order_id')->primary();
-            $table->foreignUuid('user_id')->references('user_id')->on('users')->cascadeOnDelete();
-            $table->foreignUuid('delivery_area_id')->nullable()->references('delivery_area_id')->on('delivery_areas')->cascadeOnDelete();
-            $table->foreignUuid('store_id')->nullable()->references('store_id')->on('stores')->cascadeOnDelete();
+            $table->id('order_id');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('delivery_area_id')->nullable()->references('delivery_area_id')->on('delivery_areas')->cascadeOnDelete();
+            $table->foreignId('store_id')->nullable()->references('store_id')->on('stores')->cascadeOnDelete();
             $table->string('order_number');
             $table->string('order_date');
             $table->string('delivery_date');
