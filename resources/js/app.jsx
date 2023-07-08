@@ -10,6 +10,9 @@ createInertiaApp({
     setup({ el, App, props }) {
         createRoot(el).render(<App {...props} />);
     },
+    progress: {
+        color: "#00ff00",
+    },
 });
 
 router.on("navigate", () => {
