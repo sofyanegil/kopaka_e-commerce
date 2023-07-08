@@ -3,6 +3,7 @@ import { Head, usePage, Link, router } from "@inertiajs/react";
 import TextInput from "../../Components/TextInput";
 import PasswordInput from "../../Components/PasswordInput";
 import Button from "../../Components/Button";
+import Swal from "sweetalert2";
 
 export default function Register() {
     const { errors } = usePage().props;
@@ -16,13 +17,27 @@ export default function Register() {
 
     const registerHandler = async (e) => {
         e.preventDefault();
-        router.post("/register", {
-            user_name: name,
-            user_email: email,
-            user_phone: phone,
-            password: password,
-            password_confirmation: passwordConfirmation,
-        });
+        router.post(
+            "/register",
+            {
+                user_name: name,
+                user_email: email,
+                user_phone: phone,
+                password: password,
+                password_confirmation: passwordConfirmation,
+            },
+            {
+                onSuccess: () => {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Register success",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                },
+            }
+        );
     };
 
     return (

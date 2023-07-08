@@ -62,16 +62,4 @@ class Order extends Model
             get: fn ($value) => \Carbon\Carbon::parse($value)->translatedFormat('1, d F Y'),
         );
     }
-
-    public $incrementing = false;
-    protected $keyType = 'string';
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (!$model->getKey()) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
-        });
-    }
 }

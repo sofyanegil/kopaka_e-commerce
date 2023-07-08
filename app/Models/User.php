@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-    protected $primaryKey = 'user_id';
+    // protected $primaryKey = 'user_id';
     /**
      * The attributes that are mass assignable.
      *
@@ -52,18 +52,6 @@ class User extends Authenticatable
     {
         return $this->getAllPermissions()->mapWithKeys(function ($pr) {
             return [$pr['name'] => true];
-        });
-    }
-
-    public $incrementing = false;
-    protected $keyType = 'string';
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (!$model->getKey()) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
         });
     }
 }

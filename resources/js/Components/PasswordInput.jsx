@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
 const PasswordField = ({ label, value, onChange, placeholder, error }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -35,9 +35,9 @@ const PasswordField = ({ label, value, onChange, placeholder, error }) => {
                     className="focus:outline-none ml-2"
                 >
                     {showPassword ? (
-                        <RiEyeOffLine size={20} />
+                        <FaRegEye size={20} />
                     ) : (
-                        <RiEyeLine size={20} />
+                        <FaRegEyeSlash size={20} />
                     )}
                 </button>
             </div>

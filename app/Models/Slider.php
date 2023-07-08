@@ -24,16 +24,4 @@ class Slider extends Model
             get: fn ($image) => asset('/storage/sliders/' . $image),
         );
     }
-
-    public $incrementing = false;
-    protected $keyType = 'string';
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            if (!$model->getKey()) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
-            }
-        });
-    }
 }

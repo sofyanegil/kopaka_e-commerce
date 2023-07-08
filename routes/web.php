@@ -28,3 +28,15 @@ Route::post('/login', 'App\Http\Controllers\Auth\LoginController@store')->name('
 
 // route logout
 Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController')->name('logout')->middleware('auth');
+
+// route middleware auth
+Route::middleware(['auth'])->group(function () {
+
+    // route account
+    Route::prefix('account')->group(function () {
+        Route::get('profile', 'App\Http\Controllers\Account\ProfileController@index')->name('account.profile.index');
+        Route::get('profile/edit', 'App\Http\Controllers\Account\ProfileController@edit')->name('account.profile.edit');
+        Route::patch('profile/update', 'App\Http\Controllers\Account\ProfileController@update')->name('account.profile.update');
+        Route::patch('profile/password', 'App\Http\Controllers\Account\ProfileController@updatePassword')->name('account.profile.changePassword');
+    });
+});
