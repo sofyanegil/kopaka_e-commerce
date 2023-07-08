@@ -32,5 +32,13 @@ class UserTableSeeder extends Seeder
 
         // assign role admin to user admin
         $user->assignRole($role);
+
+        $user = User::create([
+            'user_name' => 'Customer',
+            'user_email' => 'customer@gmail.com',
+            'password' => bcrypt('password'),
+        ]);
+        $role = Role::find(2);
+        $user->assignRole($role);
     }
 }

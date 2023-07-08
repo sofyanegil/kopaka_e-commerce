@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Button({ type, name, color }) {
+export default function Button({ name, color }) {
     return (
         <button type="submit" className={`btn btn-${color}`}>
             {name}

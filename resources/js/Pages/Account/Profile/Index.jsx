@@ -1,7 +1,7 @@
 import React from "react";
-import LayoutAccount from "../../../Layouts/Account";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { FaCakeCandles, FaPhone, FaRegEnvelope } from "react-icons/fa6";
+import LayoutAccount from "../../../Layouts/Account";
 import Button from "../../../Components/Button";
 import Card from "../../../Components/Card";
 

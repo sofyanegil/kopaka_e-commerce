@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextField = ({ label, value, onChange, placeholder, type, error }) => {
+const TextInput = ({ label, value, onChange, placeholder, type, error }) => {
     return (
         <div className="mb-4">
             <label
@@ -29,4 +29,4 @@ const TextField = ({ label, value, onChange, placeholder, type, error }) => {
     );
 };
 
-export default TextField;
+export default TextInput;

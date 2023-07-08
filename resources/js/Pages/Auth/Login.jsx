@@ -3,6 +3,7 @@ import { Head, usePage, Link, router } from "@inertiajs/react";
 import TextInput from "../../Components/TextInput";
 import PasswordInput from "../../Components/PasswordInput";
 import Button from "../../Components/Button";
+import Swal from "sweetalert2";
 
 export default function Login() {
     const { errors } = usePage().props;
@@ -13,10 +14,24 @@ export default function Login() {
     const loginHandler = async (e) => {
         e.preventDefault();
 
-        router.post("/login", {
-            user_email: email,
-            password: password,
-        });
+        router.post(
+            "/login",
+            {
+                user_email: email,
+                password: password,
+            },
+            {
+                onSuccess: () => {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Login success",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                },
+            }
+        );
     };
 
     return (
@@ -45,14 +60,14 @@ export default function Login() {
                                 onChange={setEmail}
                                 placeholder="jhon@doe.com"
                                 error={errors.user_email}
-                            ></TextInput>
+                            />
                             <PasswordInput
                                 label="password"
                                 value={password}
                                 onChange={setPassword}
                                 placeholder="Password"
-                                error={errors.user_password}
-                            ></PasswordInput>
+                                error={errors.password}
+                            />
                             <Button
                                 type={"submit"}
                                 name={"LOGIN"}
