@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
-const PasswordField = ({ label, value, onChange, placeholder, error }) => {
+export default function PasswordInput({
+    label,
+    value,
+    onChange,
+    placeholder,
+    error,
+}) {
     const [showPassword, setShowPassword] = useState(false);
 
     const toggleShowPassword = () => {
@@ -44,6 +50,4 @@ const PasswordField = ({ label, value, onChange, placeholder, error }) => {
             {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
         </div>
     );
-};
-
-export default PasswordField;
+}
