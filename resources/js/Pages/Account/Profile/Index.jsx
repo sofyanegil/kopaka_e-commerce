@@ -1,6 +1,6 @@
 import React from "react";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { FaCakeCandles, FaPhone, FaRegEnvelope } from "react-icons/fa6";
+import { FaCakeCandles, FaPhone, FaRegEnvelope, FaUser } from "react-icons/fa6";
 import LayoutAccount from "../../../Layouts/Account";
 import Button from "../../../Components/Button";
 import Card from "../../../Components/Card";
@@ -14,8 +14,14 @@ export default function Profile() {
                 <title>Profile | Kopaka</title>
             </Head>
             <LayoutAccount>
-                <h1 className="text-center font-bold text-3xl">Profile</h1>
-                <Card>
+                <Card
+                    title={
+                        <>
+                            <FaUser />
+                            Profile
+                        </>
+                    }
+                >
                     <div className="p-6">
                         <div className="flex flex-col items-center mb-8">
                             <img
@@ -43,11 +49,7 @@ export default function Profile() {
 
                         <div className="flex justify-center gap-2">
                             <Link href="/account/profile/edit">
-                                <Button
-                                    type="submit"
-                                    color="primary"
-                                    name="Edit"
-                                />
+                                <Button color="primary">Edit Profile</Button>
                             </Link>
                         </div>
                     </div>
