@@ -39,4 +39,16 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('profile/update', 'App\Http\Controllers\Account\ProfileController@update')->name('account.profile.update');
         Route::patch('profile/password', 'App\Http\Controllers\Account\ProfileController@updatePassword')->name('account.profile.changePassword');
     });
+
+    // route admin
+    Route::prefix('admin')->group(function () {
+
+        // route permissions
+        Route::get('/permissions', 'App\Http\Controllers\Admin\PermissionController@index')->name('admin.permissions.index')->middleware('permission:permissions.index');
+        Route::post('/permissions', 'App\Http\Controllers\Admin\PermissionController@store')->name('admin.permissions.store')->middleware('permission:permissions.store');
+
+        //route resource roles
+        Route::resource('/roles', \App\Http\Controllers\Admin\RoleController::class, ['as' => 'admin'])
+            ->middleware('permission:roles.index|roles.create|roles.edit|roles.delete');
+    });
 });

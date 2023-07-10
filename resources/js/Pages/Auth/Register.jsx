@@ -7,8 +7,6 @@ import Swal from "sweetalert2";
 
 export default function Register() {
     const { errors } = usePage().props;
-
-    // state user
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -97,11 +95,7 @@ export default function Register() {
                                 onChange={setPasswordConfirmation}
                                 placeholder="Confirm Password"
                             ></PasswordInput>
-                            <Button
-                                type={"submit"}
-                                name={"REGISTER"}
-                                color="primary"
-                            />
+                            <Button color="primary">Register</Button>
                         </form>
                         <hr className="mt-4" />
                         <div className="text-center mt-4">

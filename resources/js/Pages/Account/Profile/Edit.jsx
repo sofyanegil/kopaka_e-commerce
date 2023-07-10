@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 import "react-datepicker/dist/react-datepicker.css";
 import LayoutAccount from "../../../Layouts/Account";
 import TextInput from "../../../Components/TextInput";
+import PasswordInput from "../../../Components/PasswordInput";
 import Button from "../../../Components/Button";
 import Card from "../../../Components/Card";
+import { FaKey, FaUserPen } from "react-icons/fa6";
 
 export default function edit() {
     const { errors, user } = usePage().props;
@@ -16,7 +18,7 @@ export default function edit() {
     const [dob, setDob] = useState(new Date(user.user_dob));
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-    console.log(errors);
+
     const updateProfile = (e) => {
         e.preventDefault();
 
@@ -71,9 +73,15 @@ export default function edit() {
                 <title> Edit Profile | Kopaka</title>
             </Head>
             <LayoutAccount>
-                <h1 className="text-center font-bold text-3xl">Edit Profile</h1>
                 <div className="flex-wrap">
-                    <Card>
+                    <Card
+                        title={
+                            <>
+                                <FaUserPen />
+                                Edit Profile
+                            </>
+                        }
+                    >
                         <form onSubmit={updateProfile}>
                             <TextInput
                                 type={"text"}
@@ -104,7 +112,6 @@ export default function edit() {
                             </label>
                             <DatePicker
                                 id="dob"
-                                locale="id-ID"
                                 dateFormat="dd MMMM yyyy"
                                 selected={dob}
                                 peekNextMonth
@@ -117,31 +124,36 @@ export default function edit() {
                                 className="bg-gray-50 border border-gray-30 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5"
                             />
                             <div className="mt-2">
-                                <Button color="success" name="Save Changes" />
+                                <Button color={"success"}>Save Changes</Button>
                             </div>
                         </form>
                     </Card>
-                    <Card>
+                    <Card
+                        title={
+                            <>
+                                <FaKey />
+                                Update Password
+                            </>
+                        }
+                    >
                         <form onSubmit={updatePassword}>
-                            <TextInput
-                                type="password"
-                                label="New Password"
+                            <PasswordInput
+                                label="password"
                                 value={password}
                                 onChange={setPassword}
+                                placeholder="Password"
                                 error={errors.password}
-                            />
-                            <TextInput
-                                type="password"
-                                label="Confirm Password"
+                            ></PasswordInput>
+                            <PasswordInput
+                                label="password confirmation"
                                 value={passwordConfirmation}
                                 onChange={setPasswordConfirmation}
-                                error={errors.password}
-                            />
+                                placeholder="Confirm Password"
+                            ></PasswordInput>
                             <div className="mt-2">
-                                <Button
-                                    color="success"
-                                    name="Change Password"
-                                />
+                                <Button color={"success"}>
+                                    Change Password
+                                </Button>
                             </div>
                         </form>
                     </Card>

@@ -68,11 +68,7 @@ export default function Login() {
                                 placeholder="Password"
                                 error={errors.password}
                             />
-                            <Button
-                                type={"submit"}
-                                name={"LOGIN"}
-                                color="primary"
-                            />
+                            <Button color="primary">Login</Button>
                         </form>
                         <hr className="mt-4" />
                         <div className="text-center mt-4">
