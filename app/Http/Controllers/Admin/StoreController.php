@@ -65,9 +65,6 @@ class StoreController extends Controller
         return redirect()->route('admin.stores.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $store = Store::findOrFail($id);

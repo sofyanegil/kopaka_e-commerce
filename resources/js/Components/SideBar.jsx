@@ -1,5 +1,6 @@
 import React from "react";
 import { usePage } from "@inertiajs/react";
+import SidebarItem from "./SidebarItem";
 import {
     FaUser,
     FaReceipt,
@@ -14,7 +15,6 @@ import {
     FaMapLocationDot,
     FaStore,
 } from "react-icons/fa6";
-import SidebarItem from "./SidebarItem";
 
 export default function SideBar({ isSidebarOpen }) {
     const { auth } = usePage().props;
@@ -84,7 +84,7 @@ export default function SideBar({ isSidebarOpen }) {
                         icon={<FaStore />}
                     />
                     <SidebarItem
-                        href={"/admin/delivery"}
+                        href={"/admin/delivery_areas"}
                         permission="deliveryAreas.index"
                         name="Delivery Area"
                         icon={<FaMapLocationDot />}

@@ -10,16 +10,13 @@ use Spatie\Permission\Models\Permission;
 class PermissionController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
-        //get permissions
         $permissions = Permission::when(request()->q, function ($permissions) {
             $permissions = $permissions->where('name', 'like', '%' . request()->q . '%');
         })->latest()->paginate(10);
 
-        //append query string to pagination links
         $permissions->appends(['q' => request()->q]);
-
 
         return Inertia::render('Admin/Permissions/Index', [
             'permissions' => $permissions,
@@ -38,6 +35,13 @@ class PermissionController extends Controller
         Permission::create([
             'name' => $request->name,
         ]);
+
+        return redirect()->route('admin.permissions.index');
+    }
+
+    public function destroy(Permission $permission)
+    {
+        $permission->delete();
 
         return redirect()->route('admin.permissions.index');
     }

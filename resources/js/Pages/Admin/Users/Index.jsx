@@ -1,6 +1,5 @@
 import React from "react";
 import { Head, usePage, Link } from "@inertiajs/react";
-import { FaUsers, FaPlus, FaPen } from "react-icons/fa6";
 import LayoutAccount from "../../../Layouts/Account";
 import Card from "../../../Components/Card";
 import Pagination from "../../../Components/Pagination";
@@ -8,6 +7,7 @@ import SearchInput from "../../../Components/SearchInput";
 import hasAnyPermission from "../../../Utils/Permissions";
 import Delete from "../../../Components/Delete";
 import Button from "../../../Components/Button";
+import { FaUsers, FaPen } from "react-icons/fa6";
 
 export default function Index() {
     const { users } = usePage().props;

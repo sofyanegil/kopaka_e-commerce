@@ -19,7 +19,7 @@ export default function LayoutAccount({ children }) {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
-    const handleLogout = async (e) => {
+    const logoutHandler = async (e) => {
         e.preventDefault();
         router.post("/logout");
     };
@@ -28,7 +28,7 @@ export default function LayoutAccount({ children }) {
         <>
             <NavbarDashboard
                 sidebarHandler={toggleSidebar}
-                logoutHandler={handleLogout}
+                logoutHandler={logoutHandler}
             />
             <main className="flex">
                 <SideBar isSidebarOpen={isSidebarOpen} />

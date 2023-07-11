@@ -18,7 +18,7 @@ export default function Index() {
     const [storeOpen, setstoreOpen] = useState("");
     const [storeClose, setstoreClose] = useState("");
 
-    const handleToggleForm = () => {
+    const toggleFromHandler = () => {
         setShowAddForm(!showAddForm);
         setstoreName("");
         setstoreAddress("");
@@ -27,7 +27,7 @@ export default function Index() {
         setstoreClose("");
     };
 
-    const handleAddStore = (e) => {
+    const addStoreHandler = (e) => {
         e.preventDefault();
         router.post(
             "/admin/stores",
@@ -43,7 +43,7 @@ export default function Index() {
                     Swal.fire({
                         icon: "success",
                         title: "Success",
-                        text: "Permission added",
+                        text: "Store added",
                         showConfirmButton: false,
                         timer: 1500,
                     });
@@ -60,7 +60,7 @@ export default function Index() {
             </Head>
             <LayoutAccount>
                 <button
-                    onClick={handleToggleForm}
+                    onClick={toggleFromHandler}
                     className="btn btn-primary flex flex-row items-center justify-center gap-2 mt-2"
                 >
                     <FaPlus /> Store
@@ -74,7 +74,7 @@ export default function Index() {
                             </>
                         }
                     >
-                        <form onSubmit={handleAddStore}>
+                        <form onSubmit={addStoreHandler}>
                             <TextInput
                                 placeholder={"Kopaka"}
                                 type={"text"}
@@ -122,7 +122,8 @@ export default function Index() {
                 <Card
                     title={
                         <>
-                            <FaStore /> Stores
+                            <FaStore />
+                            Stores
                         </>
                     }
                 >

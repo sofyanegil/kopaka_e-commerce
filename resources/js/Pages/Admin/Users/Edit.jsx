@@ -18,7 +18,7 @@ export default function Edit() {
         user.roles.map((obj) => obj.name)
     );
 
-    const handleChekboxChange = (e) => {
+    const checkboxChangeHandler = (e) => {
         let data = rolesData;
         if (data.some((name) => name === e.target.value)) {
             data = data.filter((name) => name !== e.target.value);
@@ -28,7 +28,7 @@ export default function Edit() {
         setRolesData(data);
     };
 
-    const updateUser = (e) => {
+    const editUserHandler = (e) => {
         e.preventDefault();
 
         router.put(
@@ -67,7 +67,7 @@ export default function Edit() {
                         </>
                     }
                 >
-                    <form onSubmit={updateUser}>
+                    <form onSubmit={editUserHandler}>
                         <TextInput
                             type={"text"}
                             label={"name"}
@@ -116,7 +116,7 @@ export default function Edit() {
                                         defaultChecked={rolesData.some(
                                             (name) => name === role.name ?? true
                                         )}
-                                        onChange={handleChekboxChange}
+                                        onChange={checkboxChangeHandler}
                                     />
                                     <label
                                         htmlFor={`checkbox-${role.id}`}

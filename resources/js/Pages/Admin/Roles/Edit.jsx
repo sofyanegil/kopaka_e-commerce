@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import LayoutAccount from "../../../Layouts/Account";
 import { Head, router, usePage } from "@inertiajs/react";
+import LayoutAccount from "../../../Layouts/Account";
 import Card from "../../../Components/Card";
-import { FaUserGear } from "react-icons/fa6";
 import TextInput from "../../../Components/TextInput";
-import Swal from "sweetalert2";
 import Button from "../../../Components/Button";
+import Swal from "sweetalert2";
+import { FaUserGear } from "react-icons/fa6";
 
 export default function Create() {
     const { errors, permissions, role } = usePage().props;
@@ -14,7 +14,7 @@ export default function Create() {
         role.permissions.map((obj) => obj.name)
     );
 
-    const handleChekboxChange = (e) => {
+    const checkboxChangeHandler = (e) => {
         let data = permissionsData;
         if (data.some((name) => name === e.target.value)) {
             data = data.filter((name) => name !== e.target.value);
@@ -24,7 +24,7 @@ export default function Create() {
         setPermissionsData(data);
     };
 
-    const updateRole = (e) => {
+    const updateRoleHandler = (e) => {
         e.preventDefault();
 
         router.put(
@@ -60,7 +60,7 @@ export default function Create() {
                         </>
                     }
                 >
-                    <form onSubmit={updateRole}>
+                    <form onSubmit={updateRoleHandler}>
                         <TextInput
                             type={"text"}
                             label={"role name"}
@@ -88,7 +88,7 @@ export default function Create() {
                                             (name) =>
                                                 name === permission.name ?? true
                                         )}
-                                        onChange={handleChekboxChange}
+                                        onChange={checkboxChangeHandler}
                                     />
                                     <label
                                         htmlFor={`checkbox-${permission.id}`}

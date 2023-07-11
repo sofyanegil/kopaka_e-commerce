@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { Head, usePage, router } from "@inertiajs/react";
 import LayoutAccount from "../../../Layouts/Account";
-import TextInput from "../../../Components/TextInput";
 import Card from "../../../Components/Card";
-import { FaStore } from "react-icons/fa6";
+import TextInput from "../../../Components/TextInput";
 import Button from "../../../Components/Button";
 import Swal from "sweetalert2";
+import { FaStore } from "react-icons/fa6";
 
 export default function Edit() {
     const { store, errors } = usePage().props;
-    console.log(store);
     const [storeName, setstoreName] = useState(store.store_name);
     const [storeAddress, setstoreAddress] = useState(store.store_address);
     const [storePhone, setstorePhone] = useState(store.store_phone);
     const [storeOpen, setstoreOpen] = useState(store.store_open);
     const [storeClose, setstoreClose] = useState(store.store_close);
 
-    const handleEditStore = (e) => {
+    const editStoreHandler = (e) => {
         e.preventDefault();
         router.put(
             `/admin/stores/${store.store_id}`,
@@ -55,7 +54,7 @@ export default function Edit() {
                         </>
                     }
                 >
-                    <form onSubmit={handleEditStore}>
+                    <form onSubmit={editStoreHandler}>
                         <TextInput
                             placeholder={"Kopaka"}
                             type={"text"}

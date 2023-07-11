@@ -10,7 +10,7 @@ export default function PasswordInput({
 }) {
     const [showPassword, setShowPassword] = useState(false);
 
-    const toggleShowPassword = () => {
+    const toggleShowPasswordHandler = () => {
         setShowPassword(!showPassword);
     };
 
@@ -37,7 +37,7 @@ export default function PasswordInput({
                 />
                 <button
                     type="button"
-                    onClick={toggleShowPassword}
+                    onClick={toggleShowPasswordHandler}
                     className="focus:outline-none ml-2"
                 >
                     {showPassword ? (

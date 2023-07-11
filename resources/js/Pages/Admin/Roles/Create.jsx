@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import LayoutAccount from "../../../Layouts/Account";
 import { Head, router, usePage } from "@inertiajs/react";
+import LayoutAccount from "../../../Layouts/Account";
 import Card from "../../../Components/Card";
-import { FaUserGear } from "react-icons/fa6";
 import TextInput from "../../../Components/TextInput";
-import Swal from "sweetalert2";
 import Button from "../../../Components/Button";
+import { FaUserGear } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 export default function Create() {
     const { errors, permissions } = usePage().props;
     const [roleName, setRoleName] = useState("");
     const [permissionsData, setPermissionsData] = useState([]);
 
-    const handleChekboxChange = (e) => {
+    const checkboxChangeHandler = (e) => {
         let data = permissionsData;
         if (e.target.checked) {
             data.push(e.target.value);
@@ -82,7 +82,7 @@ export default function Create() {
                                         id={`checkbox-${permission.id}`}
                                         type="checkbox"
                                         value={permission.name}
-                                        onChange={handleChekboxChange}
+                                        onChange={checkboxChangeHandler}
                                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
                                     />
                                     <label
