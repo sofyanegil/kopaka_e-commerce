@@ -4,10 +4,10 @@ import LayoutAccount from "../../../Layouts/Account";
 import Pagination from "../../../Components/Pagination";
 import Card from "../../../Components/Card";
 import SearchInput from "../../../Components/SearchInput";
-import { FaPen, FaPlus, FaUserGear } from "react-icons/fa6";
 import hasAnyPermission from "../../../Utils/Permissions";
 import Button from "../../../Components/Button";
 import Delete from "../../../Components/Delete";
+import { FaPen, FaPlus, FaUserGear } from "react-icons/fa6";
 
 export default function Index() {
     const { roles } = usePage().props;

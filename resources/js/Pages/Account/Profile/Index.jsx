@@ -1,9 +1,9 @@
 import React from "react";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { FaCakeCandles, FaPhone, FaRegEnvelope, FaUser } from "react-icons/fa6";
 import LayoutAccount from "../../../Layouts/Account";
 import Button from "../../../Components/Button";
 import Card from "../../../Components/Card";
+import { FaCakeCandles, FaPhone, FaRegEnvelope, FaUser } from "react-icons/fa6";
 
 export default function Profile() {
     const { user } = usePage().props;
@@ -46,7 +46,6 @@ export default function Profile() {
                                 )}
                             </p>
                         </div>
-
                         <div className="flex justify-center gap-2">
                             <Link href="/account/profile/edit">
                                 <Button color="primary">Edit Profile</Button>

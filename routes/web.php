@@ -42,17 +42,20 @@ Route::middleware(['auth'])->group(function () {
 
     // route admin
     Route::prefix('admin')->group(function () {
-
-        // route permissions
-        Route::get('/permissions', 'App\Http\Controllers\Admin\PermissionController@index')->name('admin.permissions.index')->middleware('permission:permissions.index');
-        Route::post('/permissions', 'App\Http\Controllers\Admin\PermissionController@store')->name('admin.permissions.store')->middleware('permission:permissions.store');
-
+        //route resource permissions
+        Route::resource('/permissions', \App\Http\Controllers\Admin\PermissionController::class, ['as' => 'admin'])
+            ->middleware('permission:permissions.index|permissions.create|permissions.delete');
         //route resource roles
         Route::resource('/roles', \App\Http\Controllers\Admin\RoleController::class, ['as' => 'admin'])
             ->middleware('permission:roles.index|roles.create|roles.edit|roles.delete');
-
         //route resource users
         Route::resource('/users', \App\Http\Controllers\Admin\UserController::class, ['as' => 'admin'])
             ->middleware('permission:users.index|users.edit|users.delete');
+        //route resource store
+        Route::resource('/stores', \App\Http\Controllers\Admin\StoreController::class, ['as' => 'admin'])
+            ->middleware('permission:stores.index|stores.create|stores.edit|stores.delete');
+        //route resource delivery_areas
+        Route::resource('/delivery_areas', \App\Http\Controllers\Admin\DeliveryAreaController::class, ['as' => 'admin'])
+            ->middleware('permission:deliveryAreas.index|deliveryAreas.create|deliveryAreas.edit|deliveryAreas.delete');
     });
 });

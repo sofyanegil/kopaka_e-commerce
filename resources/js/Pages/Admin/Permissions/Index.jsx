@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import { Head, usePage, router } from "@inertiajs/react";
 import LayoutAccount from "../../../Layouts/Account";
-import Pagination from "../../../Components/Pagination";
 import Card from "../../../Components/Card";
 import SearchInput from "../../../Components/SearchInput";
+import Pagination from "../../../Components/Pagination";
 import Button from "../../../Components/Button";
 import TextInput from "../../../Components/TextInput";
 import { FaPlus, FaShield, FaUserShield } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import hasAnyPermission from "../../../Utils/Permissions";
+import Delete from "../../../Components/Delete";
 
 export default function Index() {
     const { permissions, errors } = usePage().props;
     const [showAddForm, setShowAddForm] = useState(false);
     const [permissionName, setPermissionName] = useState("");
 
-    const handleToggleForm = () => {
+    const toggleFromHandler = () => {
         setShowAddForm(!showAddForm);
         setPermissionName("");
     };
 
-    const handleAddPermission = (e) => {
+    const addPermissionHandler = (e) => {
         e.preventDefault();
         router.post(
             "/admin/permissions",
@@ -33,6 +35,7 @@ export default function Index() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    setShowAddForm(!showAddForm);
                 },
             }
         );
@@ -46,7 +49,7 @@ export default function Index() {
             <LayoutAccount>
                 <SearchInput URL="/admin/permissions" />
                 <button
-                    onClick={handleToggleForm}
+                    onClick={toggleFromHandler}
                     className="btn btn-primary flex flex-row items-center justify-center gap-2 mt-2"
                 >
                     <FaPlus /> Permission
@@ -60,7 +63,7 @@ export default function Index() {
                             </>
                         }
                     >
-                        <form onSubmit={handleAddPermission}>
+                        <form onSubmit={addPermissionHandler}>
                             <TextInput
                                 placeholder={"Permission Name"}
                                 type={"text"}
@@ -94,6 +97,9 @@ export default function Index() {
                                     <th scope="col" className="px-6 py-3">
                                         Permission Name
                                     </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Actions
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,6 +118,16 @@ export default function Index() {
                                         </th>
                                         <td className="px-6 py-4">
                                             {permission.name}
+                                        </td>
+                                        <td className="p-3 flex flex-row gap-1 max-md:flex-col items-center content-center">
+                                            {hasAnyPermission([
+                                                "permissions.delete",
+                                            ]) && (
+                                                <Delete
+                                                    URL={"/admin/permissions"}
+                                                    id={permission.id}
+                                                />
+                                            )}
                                         </td>
                                     </tr>
                                 ))}

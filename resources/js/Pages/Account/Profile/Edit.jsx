@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Head, router, usePage } from "@inertiajs/react";
-import DatePicker from "react-datepicker";
-import Swal from "sweetalert2";
-import "react-datepicker/dist/react-datepicker.css";
 import LayoutAccount from "../../../Layouts/Account";
 import TextInput from "../../../Components/TextInput";
 import PasswordInput from "../../../Components/PasswordInput";
 import Button from "../../../Components/Button";
 import Card from "../../../Components/Card";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Swal from "sweetalert2";
 import { FaKey, FaUserPen } from "react-icons/fa6";
 
 export default function edit() {
@@ -19,7 +19,7 @@ export default function edit() {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-    const updateProfile = (e) => {
+    const editProfileHandler = (e) => {
         e.preventDefault();
 
         router.patch(
@@ -44,7 +44,7 @@ export default function edit() {
         );
     };
 
-    const updatePassword = (e) => {
+    const updatePasswordHandler = (e) => {
         e.preventDefault();
 
         router.patch(
@@ -82,7 +82,7 @@ export default function edit() {
                             </>
                         }
                     >
-                        <form onSubmit={updateProfile}>
+                        <form onSubmit={editProfileHandler}>
                             <TextInput
                                 type={"text"}
                                 label="name"
@@ -136,7 +136,7 @@ export default function edit() {
                             </>
                         }
                     >
-                        <form onSubmit={updatePassword}>
+                        <form onSubmit={updatePasswordHandler}>
                             <PasswordInput
                                 label="password"
                                 value={password}
