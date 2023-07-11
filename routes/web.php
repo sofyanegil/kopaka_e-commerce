@@ -50,5 +50,9 @@ Route::middleware(['auth'])->group(function () {
         //route resource roles
         Route::resource('/roles', \App\Http\Controllers\Admin\RoleController::class, ['as' => 'admin'])
             ->middleware('permission:roles.index|roles.create|roles.edit|roles.delete');
+
+        //route resource users
+        Route::resource('/users', \App\Http\Controllers\Admin\UserController::class, ['as' => 'admin'])
+            ->middleware('permission:users.index|users.edit|users.delete');
     });
 });

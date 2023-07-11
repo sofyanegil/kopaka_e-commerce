@@ -1,34 +1,29 @@
 import React from "react";
 import { Head, usePage, Link } from "@inertiajs/react";
+import { FaUsers, FaPlus, FaPen } from "react-icons/fa6";
 import LayoutAccount from "../../../Layouts/Account";
-import Pagination from "../../../Components/Pagination";
 import Card from "../../../Components/Card";
+import Pagination from "../../../Components/Pagination";
 import SearchInput from "../../../Components/SearchInput";
-import { FaPen, FaPlus, FaUserGear } from "react-icons/fa6";
 import hasAnyPermission from "../../../Utils/Permissions";
-import Button from "../../../Components/Button";
 import Delete from "../../../Components/Delete";
+import Button from "../../../Components/Button";
 
 export default function Index() {
-    const { roles } = usePage().props;
+    const { users } = usePage().props;
 
     return (
         <>
             <Head>
-                <title>Roles | Kopaka</title>
+                <title>Users | Kopaka</title>
             </Head>
             <LayoutAccount>
-                <SearchInput URL="/admin/roles" />
-                <Link href="/admin/roles/create">
-                    <button className="btn btn-primary flex flex-row items-center justify-center gap-2 mt-2">
-                        <FaPlus /> Role
-                    </button>
-                </Link>
+                <SearchInput URL="/admin/users" />
                 <Card
                     title={
                         <>
-                            <FaUserGear />
-                            Roles
+                            <FaUsers />
+                            Users
                         </>
                     }
                 >
@@ -44,10 +39,13 @@ export default function Index() {
                                         No
                                     </th>
                                     <th scope="col" className="p-2">
-                                        Roles Name
+                                        Name
                                     </th>
                                     <th scope="col" className="p-2">
-                                        Permissions
+                                        Email
+                                    </th>
+                                    <th scope="col" className="p-2">
+                                        role
                                     </th>
                                     <th scope="col" className="p-2 ">
                                         Actions
@@ -55,7 +53,7 @@ export default function Index() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {roles.data.map((role, index) => (
+                                {users.data.map((user, index) => (
                                     <tr
                                         className="bg-white border-b"
                                         key={index}
@@ -65,30 +63,32 @@ export default function Index() {
                                             className="p-3 font-medium text-gray-900 whitespace-nowrap"
                                         >
                                             {++index +
-                                                (roles.current_page - 1) *
-                                                    roles.per_page}
+                                                (users.current_page - 1) *
+                                                    users.per_page}
                                         </th>
-                                        <td className="p-3">{role.name}</td>
                                         <td className="p-3">
-                                            <div className="flex flex-wrap gap-1">
-                                                {role.permissions.map(
-                                                    (permission, index) => (
-                                                        <span
-                                                            className="text-xs btn btn-success"
-                                                            key={index}
-                                                        >
-                                                            {permission.name}
-                                                        </span>
-                                                    )
-                                                )}
-                                            </div>
+                                            {user.user_name}
                                         </td>
+                                        <td className="p-3">
+                                            {user.user_email}
+                                        </td>
+                                        <td className="p-3">
+                                            {user.roles.map((role, index) => (
+                                                <span
+                                                    className="btn btn-success shadow-sm border"
+                                                    key={index}
+                                                >
+                                                    {role.name}
+                                                </span>
+                                            ))}
+                                        </td>
+
                                         <td className="p-3 flex flex-row gap-1 max-md:flex-col items-center content-center">
                                             {hasAnyPermission([
-                                                "roles.edit",
+                                                "users.edit",
                                             ]) && (
                                                 <Link
-                                                    href={`/admin/roles/${role.id}/edit`}
+                                                    href={`/admin/users/${user.id}/edit`}
                                                 >
                                                     <Button color={"secondary"}>
                                                         <FaPen />
@@ -96,11 +96,11 @@ export default function Index() {
                                                 </Link>
                                             )}
                                             {hasAnyPermission([
-                                                "roles.delete",
+                                                "users.delete",
                                             ]) && (
                                                 <Delete
-                                                    URL={"/admin/roles"}
-                                                    id={role.id}
+                                                    URL={"/admin/users"}
+                                                    id={user.id}
                                                 />
                                             )}
                                         </td>
@@ -109,7 +109,7 @@ export default function Index() {
                             </tbody>
                         </table>
                     </div>
-                    <Pagination links={roles.links} align={"end"} />
+                    <Pagination links={users.links} align={"end"} />
                 </Card>
             </LayoutAccount>
         </>
