@@ -57,7 +57,7 @@ export default function Edit() {
     return (
         <>
             <Head>
-                <title>Create User | Kopaka</title>
+                <title>Edit User | Kopaka</title>
             </Head>
             <LayoutAccount>
                 <Card

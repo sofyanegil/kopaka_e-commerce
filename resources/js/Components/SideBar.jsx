@@ -21,12 +21,12 @@ export default function SideBar({ isSidebarOpen }) {
 
     return (
         <aside
-            className={`fixed top-0 left-0 w-64 z-40 h-screen transition-transform ${
+            className={`fixed top-0 left-0 w-64 z-40 h-screen transition-transform overflow-y-auto ${
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
             }`}
             aria-label="Sidebar"
         >
-            <div className="h-full py-4 overflow-y-auto bg-slate-100 mt-14 scroll-smooth">
+            <div className="h-full py-4  bg-slate-100 mt-14 scroll-smooth">
                 <div className=" p-5 shadow bg-slate-800 ">
                     <h6 className="mb-1 text-white">Welcome Back,</h6>
                     <p className="font-bold text-xl text-white ">

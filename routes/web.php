@@ -54,5 +54,9 @@ Route::middleware(['auth'])->group(function () {
         //route resource users
         Route::resource('/users', \App\Http\Controllers\Admin\UserController::class, ['as' => 'admin'])
             ->middleware('permission:users.index|users.edit|users.delete');
+
+        //route resource store
+        Route::resource('/stores', \App\Http\Controllers\Admin\StoreController::class, ['as' => 'admin'])
+            ->middleware('permission:stores.index|stores.create|stores.edit|stores.delete');
     });
 });

@@ -33,6 +33,7 @@ export default function Index() {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    setShowAddForm(!showAddForm);
                 },
             }
         );

@@ -34,7 +34,7 @@ class ProfileController extends Controller
             'user_name' => ['required', 'max:255'],
             'user_email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'user_phone' => ['required', 'digits_between:11,13', 'numeric', Rule::unique('users')->ignore($user->id)],
-            'user_dob' => ['required', 'date', 'before:today'],
+            'user_dob' => ['required', 'date', 'before_or_equal:today'],
         ]);
 
         $user->update([
