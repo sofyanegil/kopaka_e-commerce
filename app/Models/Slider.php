@@ -17,10 +17,10 @@ class Slider extends Model
     ];
 
     // accessor
-    public function image(): Attribute
+    public function sliderImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => asset('/storage/sliders/' . $image),
+            get: fn ($slider_image_url) => asset('/storage/sliders/' . $slider_image_url),
         );
     }
 }

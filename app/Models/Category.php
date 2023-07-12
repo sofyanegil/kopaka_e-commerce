@@ -24,10 +24,10 @@ class Category extends Model
     }
 
     // accessor
-    public function image(): Attribute
+    public function categoryImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => asset('/storage/categories/' . $image),
+            get: fn ($category_image_url) => asset('/storage/categories/' . $category_image_url),
         );
     }
 }
