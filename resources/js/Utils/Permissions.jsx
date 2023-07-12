@@ -1,3 +1,4 @@
+import React from "react";
 import { usePage } from "@inertiajs/react";
 
 export default function hasAnyPermission(permissions) {
@@ -9,7 +10,7 @@ export default function hasAnyPermission(permissions) {
 
     let hasPermission = false;
 
-    permissions.forEach(function (item) {
+    permissions.forEach(function (item, _) {
         if (allPermissions[item]) hasPermission = true;
     });
     return hasPermission;

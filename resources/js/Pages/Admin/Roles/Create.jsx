@@ -23,7 +23,7 @@ export default function Create() {
         setPermissionsData(data);
     };
 
-    const storeRole = (e) => {
+    const createRoleHandler = (e) => {
         e.preventDefault();
 
         router.post(
@@ -59,7 +59,7 @@ export default function Create() {
                         </>
                     }
                 >
-                    <form onSubmit={storeRole}>
+                    <form onSubmit={createRoleHandler}>
                         <TextInput
                             type={"text"}
                             label={"role name"}

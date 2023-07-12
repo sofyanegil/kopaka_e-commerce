@@ -35,7 +35,7 @@ export default function edit() {
                     Swal.fire({
                         icon: "success",
                         title: "Success",
-                        text: "Profile updated successfully",
+                        text: "Profile Updated",
                         showConfirmButton: false,
                         timer: 1500,
                     });

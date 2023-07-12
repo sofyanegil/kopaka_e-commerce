@@ -57,5 +57,11 @@ Route::middleware(['auth'])->group(function () {
         //route resource delivery_areas
         Route::resource('/delivery_areas', \App\Http\Controllers\Admin\DeliveryAreaController::class, ['as' => 'admin'])
             ->middleware('permission:deliveryAreas.index|deliveryAreas.create|deliveryAreas.edit|deliveryAreas.delete');
+        //route resource sliders
+        Route::resource('/sliders', \App\Http\Controllers\Admin\SliderController::class, ['as' => 'admin'])
+            ->middleware('permission:sliders.index|sliders.create|sliders.delete');
+        //route resource sliders
+        Route::resource('/categories', \App\Http\Controllers\Admin\CategoryController::class, ['as' => 'admin'])
+            ->middleware('permission:categories.index|categories.create|categories.edit|categories.delete');
     });
 });
