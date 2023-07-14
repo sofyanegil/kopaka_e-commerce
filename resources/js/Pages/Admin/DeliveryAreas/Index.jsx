@@ -21,7 +21,7 @@ export default function Index() {
         setdeliveryAreaPrice("");
     };
 
-    const addDeliveryAreaHandler = (e) => {
+    const addDeliveryAreaHandler = async (e) => {
         e.preventDefault();
         router.post(
             "/admin/delivery_areas",

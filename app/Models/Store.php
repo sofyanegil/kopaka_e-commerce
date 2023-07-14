@@ -17,4 +17,9 @@ class Store extends Model
         'store_open',
         'store_close',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'store_id', 'store_id');
+    }
 }

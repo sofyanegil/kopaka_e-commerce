@@ -15,7 +15,7 @@ export default function Edit() {
     );
     const [categoryImageURL, setCategoryImageURL] = useState(null);
 
-    const editCategoryHandler = (e) => {
+    const editCategoryHandler = async (e) => {
         e.preventDefault();
 
         router.post(
@@ -46,7 +46,7 @@ export default function Edit() {
     return (
         <>
             <Head>
-                <title>Edit Categories | Kopaka</title>
+                <title>Edit Category | Kopaka</title>
             </Head>
             <LayoutAccount>
                 <Card

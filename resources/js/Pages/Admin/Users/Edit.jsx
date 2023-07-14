@@ -18,7 +18,7 @@ export default function Edit() {
         user.roles.map((obj) => obj.name)
     );
 
-    const checkboxChangeHandler = (e) => {
+    const checkboxChangeHandler = async (e) => {
         let data = rolesData;
         if (data.some((name) => name === e.target.value)) {
             data = data.filter((name) => name !== e.target.value);

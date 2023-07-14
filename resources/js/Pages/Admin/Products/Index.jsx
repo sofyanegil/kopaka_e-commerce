@@ -1,34 +1,34 @@
+import { Head, Link, usePage } from "@inertiajs/react";
 import React from "react";
-import { Head, usePage, Link } from "@inertiajs/react";
 import LayoutAccount from "../../../Layouts/Account";
-import Pagination from "../../../Components/Pagination";
 import Card from "../../../Components/Card";
 import SearchInput from "../../../Components/SearchInput";
+import { FaCakeCandles, FaEye, FaPen, FaPlus } from "react-icons/fa6";
+import Pagination from "../../../Components/Pagination";
 import hasAnyPermission from "../../../Utils/Permissions";
 import Button from "../../../Components/Button";
 import Delete from "../../../Components/Delete";
-import { FaPen, FaPlus, FaUserGear } from "react-icons/fa6";
 
 export default function Index() {
-    const { roles } = usePage().props;
+    const { products } = usePage().props;
 
     return (
         <>
             <Head>
-                <title>Roles | Kopaka</title>
+                <title>Products | Kopaka</title>
             </Head>
             <LayoutAccount>
-                <SearchInput URL="/admin/roles" />
-                <Link href="/admin/roles/create">
+                <SearchInput URL="/admin/products" />
+                <Link href="/admin/products/create">
                     <button className="btn btn-primary flex flex-row items-center justify-center gap-2 mt-2">
-                        <FaPlus /> Role
+                        <FaPlus /> Product
                     </button>
                 </Link>
                 <Card
                     title={
                         <>
-                            <FaUserGear />
-                            Roles
+                            <FaCakeCandles />
+                            Products
                         </>
                     }
                 >
@@ -44,10 +44,13 @@ export default function Index() {
                                         No
                                     </th>
                                     <th scope="col" className="p-2">
-                                        Roles Name
+                                        Product Name
                                     </th>
                                     <th scope="col" className="p-2">
-                                        Permissions
+                                        Category
+                                    </th>
+                                    <th scope="col" className="p-2 ">
+                                        Variants
                                     </th>
                                     <th scope="col" className="p-2 ">
                                         Actions
@@ -55,7 +58,7 @@ export default function Index() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {roles.data.map((role, index) => (
+                                {products.data.map((product, index) => (
                                     <tr
                                         className="bg-white border-b"
                                         key={index}
@@ -65,30 +68,46 @@ export default function Index() {
                                             className="p-3 font-medium text-gray-900 whitespace-nowrap"
                                         >
                                             {++index +
-                                                (roles.current_page - 1) *
-                                                    roles.per_page}
+                                                (products.current_page - 1) *
+                                                    products.per_page}
                                         </th>
-                                        <td className="p-3">{role.name}</td>
                                         <td className="p-3">
-                                            <div className="flex flex-wrap gap-1">
-                                                {role.permissions.map(
-                                                    (permission, index) => (
-                                                        <span
-                                                            className="inline-block px-2 py-1 mr-2 rounded-full bg-gray-200 text-gray-800 text-sm"
-                                                            key={index}
-                                                        >
-                                                            {permission.name}
-                                                        </span>
-                                                    )
-                                                )}
-                                            </div>
+                                            {product.product_name}
+                                        </td>
+                                        <td className="p-3">
+                                            {product.category.category_name}
+                                        </td>
+                                        <td className="p-3">
+                                            {product.product_variants.map(
+                                                (product_variant, index) => (
+                                                    <p
+                                                        key={index}
+                                                        className="inline-block px-2 py-1 mr-2 rounded-full bg-gray-200 text-gray-800 text-sm"
+                                                    >
+                                                        {
+                                                            product_variant.product_variant_name
+                                                        }
+                                                    </p>
+                                                )
+                                            )}
                                         </td>
                                         <td className="p-3 flex flex-row gap-1 max-md:flex-col items-center content-center">
                                             {hasAnyPermission([
-                                                "roles.edit",
+                                                "products.show",
                                             ]) && (
                                                 <Link
-                                                    href={`/admin/roles/${role.id}/edit`}
+                                                    href={`/admin/products/${product.product_id}`}
+                                                >
+                                                    <Button color={"primary"}>
+                                                        <FaEye />
+                                                    </Button>
+                                                </Link>
+                                            )}
+                                            {hasAnyPermission([
+                                                "products.edit",
+                                            ]) && (
+                                                <Link
+                                                    href={`/admin/products/${product.product_id}/edit`}
                                                 >
                                                     <Button color={"secondary"}>
                                                         <FaPen />
@@ -96,11 +115,11 @@ export default function Index() {
                                                 </Link>
                                             )}
                                             {hasAnyPermission([
-                                                "roles.delete",
+                                                "products.delete",
                                             ]) && (
                                                 <Delete
-                                                    URL={"/admin/roles"}
-                                                    id={role.id}
+                                                    URL={"/admin/products"}
+                                                    id={product.product_id}
                                                 />
                                             )}
                                         </td>
@@ -109,7 +128,7 @@ export default function Index() {
                             </tbody>
                         </table>
                     </div>
-                    <Pagination links={roles.links} align={"end"} />
+                    <Pagination links={products.links} align={"end"} />
                 </Card>
             </LayoutAccount>
         </>

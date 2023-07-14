@@ -27,7 +27,7 @@ export default function Index() {
         setstoreClose("");
     };
 
-    const addStoreHandler = (e) => {
+    const addStoreHandler = async (e) => {
         e.preventDefault();
         router.post(
             "/admin/stores",

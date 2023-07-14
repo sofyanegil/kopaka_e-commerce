@@ -15,7 +15,7 @@ export default function Edit() {
     const [storeOpen, setstoreOpen] = useState(store.store_open);
     const [storeClose, setstoreClose] = useState(store.store_close);
 
-    const editStoreHandler = (e) => {
+    const editStoreHandler = async (e) => {
         e.preventDefault();
         router.put(
             `/admin/stores/${store.store_id}`,

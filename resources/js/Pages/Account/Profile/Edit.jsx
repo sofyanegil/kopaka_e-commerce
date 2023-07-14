@@ -19,7 +19,7 @@ export default function edit() {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-    const editProfileHandler = (e) => {
+    const editProfileHandler = async (e) => {
         e.preventDefault();
 
         router.patch(
@@ -44,7 +44,7 @@ export default function edit() {
         );
     };
 
-    const updatePasswordHandler = (e) => {
+    const updatePasswordHandler = async (e) => {
         e.preventDefault();
 
         router.patch(
@@ -70,7 +70,7 @@ export default function edit() {
     return (
         <>
             <Head>
-                <title> Edit Profile | Kopaka</title>
+                <title>Edit Profile | Kopaka</title>
             </Head>
             <LayoutAccount>
                 <div className="flex-wrap">

@@ -23,7 +23,7 @@ export default function Create() {
         setPermissionsData(data);
     };
 
-    const createRoleHandler = (e) => {
+    const createRoleHandler = async (e) => {
         e.preventDefault();
 
         router.post(

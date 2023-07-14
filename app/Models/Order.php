@@ -30,35 +30,21 @@ class Order extends Model
 
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class, 'order_id', 'order_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function deliveryArea()
     {
-        return $this->belongsTo(DeliveryArea::class);
+        return $this->belongsTo(DeliveryArea::class, 'delivery_area_id', 'delivery_area_id');
     }
 
     public function store()
     {
-        return $this->belongsTo(Store::class);
-    }
-
-    public function orderDate(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => \Carbon\Carbon::parse($value)->translatedFormat('1, d F Y'),
-        );
-    }
-
-    public function deliveryDate(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => \Carbon\Carbon::parse($value)->translatedFormat('1, d F Y'),
-        );
+        return $this->belongsTo(Store::class, 'store_id', 'store_id');
     }
 }
