@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('delivery_area_id')->nullable()->references('delivery_area_id')->on('delivery_areas')->cascadeOnDelete();
             $table->foreignId('store_id')->nullable()->references('store_id')->on('stores')->cascadeOnDelete();
             $table->string('order_number');
-            $table->string('order_date');
-            $table->string('delivery_date');
+            $table->date('order_date');
+            $table->date('delivery_date');
             $table->string('delivery_phone');
             $table->string('order_note')->nullable();
             $table->enum('order_type', array('DELIVERY', 'PICKUP'))->default('DELIVERY');

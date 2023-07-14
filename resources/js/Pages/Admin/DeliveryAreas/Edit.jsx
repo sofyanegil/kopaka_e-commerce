@@ -16,7 +16,7 @@ export default function Edit() {
         delivery_area.delivery_area_price
     );
 
-    const editDeliveryAreaHandler = (e) => {
+    const editDeliveryAreaHandler = async (e) => {
         e.preventDefault();
         router.put(
             `/admin/delivery_areas/${delivery_area.delivery_area_id}`,

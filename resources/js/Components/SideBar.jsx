@@ -42,7 +42,7 @@ export default function SideBar({ isSidebarOpen }) {
                         icon={<FaUser />}
                     />
                     <SidebarItem
-                        href={"/account/order"}
+                        href={"/account/orders"}
                         permission="orderHistory.index"
                         name="Order History"
                         icon={<FaReceipt />}
@@ -54,9 +54,9 @@ export default function SideBar({ isSidebarOpen }) {
                         icon={<FaChartPie />}
                     />
                     <SidebarItem
-                        href={"/admin/order"}
+                        href={"/admin/orders"}
                         permission="orders.index"
-                        name="Transaction"
+                        name="Orders"
                         icon={<FaCartShopping />}
                     />
                     <SidebarItem

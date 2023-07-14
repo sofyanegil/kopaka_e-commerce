@@ -11,7 +11,7 @@ export default function SliderCreate() {
     const [sliderImageURL, setSliderImageURL] = useState("");
     const [sliderLink, setSliderLink] = useState("");
 
-    const addSliderHandler = (e) => {
+    const addSliderHandler = async (e) => {
         e.preventDefault();
         router.post(
             "/admin/sliders",

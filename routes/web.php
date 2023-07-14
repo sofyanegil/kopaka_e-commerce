@@ -38,6 +38,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('profile/edit', 'App\Http\Controllers\Account\ProfileController@edit')->name('account.profile.edit');
         Route::patch('profile/update', 'App\Http\Controllers\Account\ProfileController@update')->name('account.profile.update');
         Route::patch('profile/password', 'App\Http\Controllers\Account\ProfileController@updatePassword')->name('account.profile.changePassword');
+
+        // route order history
+        Route::get('orders', 'App\Http\Controllers\Account\OrderHistoryController@index')->name('account.orders_history.index')->middleware('permission:orderHistory.index');
+        Route::get('orders/{invoice}', 'App\Http\Controllers\Account\OrderHistoryController@show')->name('account.orders_history.show')->middleware('permission:orderHistory.show');
     });
 
     // route admin
@@ -60,8 +64,21 @@ Route::middleware(['auth'])->group(function () {
         //route resource sliders
         Route::resource('/sliders', \App\Http\Controllers\Admin\SliderController::class, ['as' => 'admin'])
             ->middleware('permission:sliders.index|sliders.create|sliders.delete');
-        //route resource sliders
+        //route resource categories
         Route::resource('/categories', \App\Http\Controllers\Admin\CategoryController::class, ['as' => 'admin'])
             ->middleware('permission:categories.index|categories.create|categories.edit|categories.delete');
+        //route resource products
+        Route::resource('/products', \App\Http\Controllers\Admin\ProductController::class, ['as' => 'admin'])
+            ->middleware('permission:products.index|products.show|products.create|products.edit|products.delete');
+
+        //route store image product
+        Route::post('/products/store_image_product', [\App\Http\Controllers\Admin\ProductController::class, 'storeImageProduct'])->name('admin.products.store_image_product');
+
+        //route destroy image product
+        Route::delete('/products/destroy_image_product/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'destroyImage'])->name('admin.products.destroy_image_product');
+
+
+        Route::resource('/orders', \App\Http\Controllers\Admin\OrderController::class, ['as' => 'admin'])
+            ->middleware('permission:orders.index|orders.show|orders.edit');
     });
 });

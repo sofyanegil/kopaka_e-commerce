@@ -21,7 +21,7 @@ export default function Index() {
         setPermissionName("");
     };
 
-    const addPermissionHandler = (e) => {
+    const addPermissionHandler = async (e) => {
         e.preventDefault();
         router.post(
             "/admin/permissions",

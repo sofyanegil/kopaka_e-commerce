@@ -13,7 +13,7 @@ export default function Create() {
     const [categoryDescription, setCategoryDescription] = useState("");
     const [categoryImageURL, setCategoryImageURL] = useState("");
 
-    const addCategoryHandler = (e) => {
+    const addCategoryHandler = async (e) => {
         e.preventDefault();
         router.post(
             "/admin/categories",
@@ -42,7 +42,7 @@ export default function Create() {
     return (
         <>
             <Head>
-                <title>Create Categories | Kopaka</title>
+                <title>Add Category | Kopaka</title>
             </Head>
             <LayoutAccount>
                 <Card

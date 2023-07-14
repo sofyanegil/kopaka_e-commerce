@@ -47,6 +47,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+
     public function getPermissionArray()
     {
         return $this->getAllPermissions()->mapWithKeys(function ($pr) {
