@@ -22,7 +22,7 @@ input[type="number"] {
 }
 
 .btn-secondary {
-    @apply text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-blue-300;
+    @apply text-gray-900 bg-slate-100 hover:bg-slate-200 focus:ring-4 focus:outline-none focus:ring-blue-300;
 }
 
 .btn-danger {

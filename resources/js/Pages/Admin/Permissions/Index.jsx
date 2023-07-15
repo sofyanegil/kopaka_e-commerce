@@ -72,7 +72,7 @@ export default function Index() {
                                 onChange={setPermissionName}
                                 error={errors.name}
                             />
-                            <Button color={"primary"}>Save</Button>
+                            <Button color={"success"}>Save</Button>
                         </form>
                     </Card>
                 )}

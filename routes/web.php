@@ -80,5 +80,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/orders', \App\Http\Controllers\Admin\OrderController::class, ['as' => 'admin'])
             ->middleware('permission:orders.index|orders.show|orders.edit');
+
+        //route dashboard
+        Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('admin.dashboard');
     });
 });

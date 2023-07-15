@@ -5,12 +5,14 @@ export default function Pagination({ links, align }) {
     return (
         <nav>
             <ul
-                className={`flex items-center -space-x-px text-base justify-${align}`}
+                className={`justify-${align} flex items-center -space-x-px text-base mt-2 gap-1`}
             >
                 {links.map((link, index) => (
                     <li
-                        className={`flex items-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-lg ${
-                            link.active ? "btn-primary" : "btn-secondary"
+                        className={`flex items-center px-4 h-10 leading-tight border border-gray-300 rounded-lg ${
+                            link.active
+                                ? "btn-primary font-bold"
+                                : "btn-secondary"
                         }`}
                         key={index}
                     >

@@ -82,7 +82,7 @@ export default function Index() {
                                 onChange={setdeliveryAreaPrice}
                                 error={errors.delivery_area_price}
                             />
-                            <Button color={"primary"}>Save</Button>
+                            <Button color={"success"}>Save</Button>
                         </form>
                     </Card>
                 )}

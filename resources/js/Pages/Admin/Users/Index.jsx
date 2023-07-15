@@ -75,7 +75,7 @@ export default function Index() {
                                         <td className="p-3">
                                             {user.roles.map((role, index) => (
                                                 <span
-                                                    className="btn btn-success shadow-sm border"
+                                                    className="inline-block px-2 py-1 mr-2 rounded-full bg-gray-200 text-gray-800 text-sm"
                                                     key={index}
                                                 >
                                                     {role.name}

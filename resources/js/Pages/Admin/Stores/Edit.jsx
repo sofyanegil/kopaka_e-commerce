@@ -95,7 +95,7 @@ export default function Edit() {
                             onChange={setstoreClose}
                             error={errors.store_close}
                         />
-                        <Button color={"primary"}>Save</Button>
+                        <Button color={"success"}>Save</Button>
                     </form>
                 </Card>
             </LayoutAccount>

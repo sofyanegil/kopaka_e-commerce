@@ -115,7 +115,7 @@ export default function Index() {
                                 onChange={setstoreClose}
                                 error={errors.store_close}
                             />
-                            <Button color={"primary"}>Save</Button>
+                            <Button color={"success"}>Save</Button>
                         </form>
                     </Card>
                 )}
