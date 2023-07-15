@@ -4,6 +4,7 @@ import LayoutAccount from "../../../Layouts/Account";
 import Button from "../../../Components/Button";
 import Card from "../../../Components/Card";
 import { FaCakeCandles, FaPhone, FaRegEnvelope, FaUser } from "react-icons/fa6";
+import formatDate from "../../../Utils/FormatDate";
 
 export default function Profile() {
     const { user } = usePage().props;
@@ -39,11 +40,7 @@ export default function Profile() {
                                 <FaPhone /> {user.user_phone}
                             </p>
                             <p className="text-gray-500 flex items-center gap-2">
-                                <FaCakeCandles />{" "}
-                                {new Date(user.user_dob).toLocaleDateString(
-                                    "id-ID",
-                                    { dateStyle: "long" }
-                                )}
+                                <FaCakeCandles /> {formatDate(user.user_dob)}
                             </p>
                         </div>
                         <div className="flex justify-center gap-2">

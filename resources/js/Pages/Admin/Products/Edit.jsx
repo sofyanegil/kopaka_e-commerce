@@ -76,7 +76,7 @@ export default function Edit() {
                     title={
                         <>
                             <FaCakeCandles />
-                            Add Product
+                            Edit Product
                         </>
                     }
                 >
@@ -240,14 +240,14 @@ export default function Edit() {
                             <div className="col-span-full">
                                 <button
                                     type="button"
-                                    className="btn btn-primary mt-2 border-0 shadow-sm"
+                                    className="btn bg-blue-500 text-white mt-2 border-0 shadow-sm"
                                     onClick={() => addMoreFields()}
                                 >
                                     <FaPlus />
                                 </button>
                             </div>
                         </div>
-                        <Button color={"primary"}>Save</Button>
+                        <Button color={"success"}>Save</Button>
                     </form>
                 </Card>
             </LayoutAccount>

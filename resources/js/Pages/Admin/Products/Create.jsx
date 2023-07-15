@@ -245,7 +245,7 @@ export default function Create() {
                                 </button>
                             </div>
                         </div>
-                        <Button color={"primary"}>Save</Button>
+                        <Button color={"success"}>Save</Button>
                     </form>
                 </Card>
             </LayoutAccount>

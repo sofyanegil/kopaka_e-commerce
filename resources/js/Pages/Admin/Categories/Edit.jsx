@@ -111,7 +111,7 @@ export default function Edit() {
                             className="mt-5 w-full mb-2"
                         />
 
-                        <Button color={"primary"}>Save</Button>
+                        <Button color={"success"}>Save</Button>
                     </form>
                 </Card>
             </LayoutAccount>

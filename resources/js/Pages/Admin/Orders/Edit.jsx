@@ -3,6 +3,7 @@ import { Head, router, usePage } from "@inertiajs/react";
 import LayoutAccount from "../../../Layouts/Account";
 import Card from "../../../Components/Card";
 import formatPrice from "../../../Utils/FormatPrice";
+import formatDate from "../../../Utils/FormatDate";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Button from "../../../Components/Button";
@@ -59,8 +60,8 @@ export default function Edit() {
                 >
                     <form onSubmit={editOrderHandler}>
                         <div className="overflow-x-auto">
-                            <table className="w-full text-sm text-left text-gray-500">
-                                <tbody className="text-gray-700 uppercase bg-gray-50">
+                            <table className="w-full text-sm text-left text-black font-semibold">
+                                <tbody className="uppercase bg-gray-50">
                                     <tr>
                                         <td style={{ width: "15%" }}>
                                             NO. ORDER
@@ -86,7 +87,7 @@ export default function Edit() {
                                         <td>ORDER DATE</td>
                                         <td>:</td>
                                         <td className="p-2">
-                                            {order.order_date}
+                                            {formatDate(order.order_date)}
                                         </td>
                                     </tr>
                                     <tr>
@@ -125,13 +126,6 @@ export default function Edit() {
                                         <td>:</td>
                                         <td className="p-2">
                                             Rp. {formatPrice(order.grand_total)}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>NOTES</td>
-                                        <td>:</td>
-                                        <td className="p-2">
-                                            {order.order_note}
                                         </td>
                                     </tr>
                                     <tr>
@@ -224,6 +218,13 @@ export default function Edit() {
                                             </tr>
                                         </>
                                     )}
+                                    <tr>
+                                        <td>NOTES</td>
+                                        <td>:</td>
+                                        <td className="p-2">
+                                            {order.order_note}
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -242,7 +243,7 @@ export default function Edit() {
                     }
                 >
                     <div className="overflow-x-auto">
-                        <div className="w-full text-sm text-left text-gray-500">
+                        <div className="w-full text-sm text-left text-gray-700">
                             {orderDetails.map((detail, index) => (
                                 <div key={index}>
                                     <div className="flex flex-col md:flex-row">
@@ -253,7 +254,7 @@ export default function Edit() {
                                                         .product_images[0]
                                                         .product_image_url
                                                 }
-                                                className="w-full rounded-3"
+                                                className="w-full h-full rounded-3"
                                                 alt={
                                                     detail.product
                                                         .product_images
@@ -272,15 +273,7 @@ export default function Edit() {
 
                                                 <div className="flex flex-wrap">
                                                     <div className="w-full md:w-1/2">
-                                                        <div>
-                                                            Qty :{" "}
-                                                            <strong>
-                                                                {
-                                                                    detail.product_quantity
-                                                                }
-                                                            </strong>
-                                                        </div>
-                                                        <div className="mt-3">
+                                                        <div className="mt-2">
                                                             Variant :{" "}
                                                             <strong>
                                                                 {
@@ -290,13 +283,30 @@ export default function Edit() {
                                                                 }
                                                             </strong>
                                                         </div>
+                                                        <div className="mt-2">
+                                                            Qty :{" "}
+                                                            <strong>
+                                                                {
+                                                                    detail.product_quantity
+                                                                }
+                                                            </strong>
+                                                        </div>
+                                                        <div className="mt-2">
+                                                            Price :{" "}
+                                                            <strong>
+                                                                {formatPrice(
+                                                                    detail
+                                                                        .product_variant
+                                                                        .product_variant_price
+                                                                )}
+                                                            </strong>
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <hr className="my-4" />
-
-                                                <h5>
-                                                    Rp.{" "}
+                                                <h5 className="font-semibold">
+                                                    Total: Rp.{" "}
                                                     {formatPrice(
                                                         detail.product_variant
                                                             .product_variant_price *

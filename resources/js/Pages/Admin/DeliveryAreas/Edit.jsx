@@ -69,7 +69,7 @@ export default function Edit() {
                             onChange={setstoreAddress}
                             error={errors.delivery_area_price}
                         />
-                        <Button color={"primary"}>Save</Button>
+                        <Button color={"success"}>Save</Button>
                     </form>
                 </Card>
             </LayoutAccount>
