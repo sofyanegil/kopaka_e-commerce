@@ -33,7 +33,6 @@ class CategoryController extends Controller
         $this->validate($request, [
             'category_name' => 'required|unique:categories',
             'category_image_url' => 'required|mimes:jpeg,png,jpg|max:2048',
-            'category_description' => 'required',
         ], [
             [
                 'category_image_url.required' => 'Image is required',
@@ -48,7 +47,6 @@ class CategoryController extends Controller
         Category::create([
             'category_name' => $request->category_name,
             'category_image_url' => $category_image_url->hashName(),
-            'category_description' => $request->category_description,
             'category_slug' => Str::slug($request->category_name, '-')
         ]);
 
@@ -66,7 +64,6 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'category_name' => 'required|unique:categories,category_name,' . $category->category_id . ',category_id',
-            'category_description' => 'required',
             'category_image_url' => 'nullable|mimes:jpeg,png,jpg|max:2048'
         ]);
 
@@ -79,13 +76,11 @@ class CategoryController extends Controller
             $category->update([
                 'category_name' => $request->category_name,
                 'category_image_url' => $category_image_url->hashName(),
-                'category_description' => $request->category_description,
                 'category_slug' => Str::slug($request->category_name, '-')
             ]);
         } else {
             $category->update([
                 'category_name' => $request->category_name,
-                'category_description' => $request->category_description,
                 'category_slug' => Str::slug($request->category_name, '-')
             ]);
         }

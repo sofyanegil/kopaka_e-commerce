@@ -1,103 +1,103 @@
-import React, { useState } from "react";
-import { Head, router, usePage } from "@inertiajs/react";
-import LayoutAccount from "../../../Layouts/Account";
-import Card from "../../../Components/Card";
-import TextInput from "../../../Components/TextInput";
-import Button from "../../../Components/Button";
-import { FaUserGear } from "react-icons/fa6";
-import Swal from "sweetalert2";
+import React, { useState } from 'react';
+import { Head, router, usePage } from '@inertiajs/react';
+import { FaUserGear } from 'react-icons/fa6';
+import Swal from 'sweetalert2';
+import LayoutAccount from '../../../Layouts/Account';
+import Card from '../../../Components/Card';
+import TextInput from '../../../Components/TextInput';
+import Button from '../../../Components/Button';
 
 export default function Create() {
-    const { errors, permissions } = usePage().props;
-    const [roleName, setRoleName] = useState("");
-    const [permissionsData, setPermissionsData] = useState([]);
+  const { errors, permissions } = usePage().props;
+  const [roleName, setRoleName] = useState('');
+  const [permissionsData, setPermissionsData] = useState([]);
 
-    const checkboxChangeHandler = (e) => {
-        let data = permissionsData;
-        if (e.target.checked) {
-            data.push(e.target.value);
-        } else {
-            const index = data.indexOf(e.target.value);
-            data.splice(index, 1);
-        }
-        setPermissionsData(data);
-    };
+  const checkboxChangeHandler = (e) => {
+    const data = permissionsData;
+    if (e.target.checked) {
+      data.push(e.target.value);
+    } else {
+      const index = data.indexOf(e.target.value);
+      data.splice(index, 1);
+    }
+    setPermissionsData(data);
+  };
 
-    const createRoleHandler = async (e) => {
-        e.preventDefault();
+  const createRoleHandler = async (e) => {
+    e.preventDefault();
 
-        router.post(
-            "/admin/roles",
-            {
-                name: roleName,
-                permissions: permissionsData,
-            },
-            {
-                onSuccess: () => {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Success",
-                        text: "Role added",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                },
-            }
-        );
-    };
-
-    return (
-        <>
-            <LayoutAccount>
-                <Head>
-                    <title>Create Roles | Kopaka</title>
-                </Head>
-                <Card
-                    title={
-                        <>
-                            <FaUserGear /> Add New Role
-                        </>
-                    }
-                >
-                    <form onSubmit={createRoleHandler}>
-                        <TextInput
-                            type={"text"}
-                            label={"role name"}
-                            error={errors.name}
-                            value={roleName}
-                            onChange={setRoleName}
-                        />
-                        <label className="block text-gray-700 text-sm font-bold mb-2">
-                            Permissions
-                        </label>
-                        {errors.permissions && (
-                            <div className="text-red-500 text-sm mt-1">
-                                {errors.permissions}
-                            </div>
-                        )}
-                        <div className="mb-3 flex flex-wrap gap-1">
-                            {permissions.map((permission, index) => (
-                                <div className="flex items-cente" key={index}>
-                                    <input
-                                        id={`checkbox-${permission.id}`}
-                                        type="checkbox"
-                                        value={permission.name}
-                                        onChange={checkboxChangeHandler}
-                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
-                                    />
-                                    <label
-                                        htmlFor={`checkbox-${permission.id}`}
-                                        className="ml-2 text-sm font-medium text-gray-900"
-                                    >
-                                        {permission.name}
-                                    </label>
-                                </div>
-                            ))}
-                        </div>
-                        <Button color={"success"}>Save</Button>
-                    </form>
-                </Card>
-            </LayoutAccount>
-        </>
+    router.post(
+      '/admin/roles',
+      {
+        name: roleName,
+        permissions: permissionsData,
+      },
+      {
+        onSuccess: () => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Role added',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+      },
     );
+  };
+
+  return (
+    <LayoutAccount>
+      <Head>
+        <title>Create Roles | Kopaka</title>
+      </Head>
+      <Card
+        title={(
+          <>
+            <FaUserGear />
+            {' '}
+            Add New Role
+          </>
+                      )}
+      >
+        <form onSubmit={createRoleHandler}>
+          <TextInput
+            type="text"
+            label="role name"
+            error={errors.name}
+            value={roleName}
+            onChange={setRoleName}
+          />
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Permissions
+          </label>
+          {errors.permissions && (
+          <div className="text-red-500 text-sm mt-1">
+            {errors.permissions}
+          </div>
+          )}
+          <div className="mb-3 flex flex-wrap gap-1">
+            {permissions.map((permission, index) => (
+              <div className="flex items-cente" key={index}>
+                <input
+                  id={`checkbox-${permission.id}`}
+                  type="checkbox"
+                  value={permission.name}
+                  onChange={checkboxChangeHandler}
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                />
+                <label
+                  htmlFor={`checkbox-${permission.id}`}
+                  className="ml-2 text-sm font-medium text-gray-900"
+                >
+                  {permission.name}
+                </label>
+              </div>
+            ))}
+          </div>
+          <Button color="success">Save</Button>
+        </form>
+      </Card>
+    </LayoutAccount>
+  );
 }

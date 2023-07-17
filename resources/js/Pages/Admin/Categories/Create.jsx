@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Head, usePage, router } from "@inertiajs/react";
+import Swal from "sweetalert2";
+import { FaBorderAll } from "react-icons/fa6";
 import LayoutAccount from "../../../Layouts/Account";
 import Card from "../../../Components/Card";
 import TextInput from "../../../Components/TextInput";
 import Button from "../../../Components/Button";
-import Swal from "sweetalert2";
-import { FaBorderAll } from "react-icons/fa6";
 
 export default function Create() {
     const { errors } = usePage().props;
@@ -19,7 +19,6 @@ export default function Create() {
             "/admin/categories",
             {
                 category_name: categoryName,
-                category_description: categoryDescription,
                 category_image_url: categoryImageURL,
             },
             {
@@ -55,20 +54,12 @@ export default function Create() {
                 >
                     <form onSubmit={addCategoryHandler}>
                         <TextInput
-                            type={"text"}
-                            label={"category name"}
-                            placeholder={"Kue"}
+                            type="text"
+                            label="category name"
+                            placeholder="Kue"
                             value={categoryName}
                             onChange={setCategoryName}
                             error={errors.category_name}
-                        />
-                        <TextInput
-                            type={"text"}
-                            label={"category description"}
-                            placeholder={"Kue Lezat"}
-                            value={categoryDescription}
-                            onChange={setCategoryDescription}
-                            error={errors.category_description}
                         />
                         <label
                             className="block mb-2 text-sm font-medium text-gray-900"
@@ -101,8 +92,8 @@ export default function Create() {
                                 {errors.category_image_url}
                             </div>
                         )}
-                        <img id="frame" src="" className="mt-5 w-full mb-2" />
-                        <Button color={"success"}>Save</Button>
+                        <img id="frame" className="mt-5 w-1/2 mb-2" />
+                        <Button color="success">Save</Button>
                     </form>
                 </Card>
             </LayoutAccount>

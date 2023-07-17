@@ -13,7 +13,6 @@ class Slider extends Model
     protected $primaryKey = 'slider_id';
     protected $fillable = [
         'slider_image_url',
-        'slider_link'
     ];
 
     // accessor
