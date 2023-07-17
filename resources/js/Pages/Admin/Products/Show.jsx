@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Head, usePage, router } from "@inertiajs/react";
+import { FaImage, FaImages } from "react-icons/fa6";
+import Swal from "sweetalert2";
 import LayoutAccount from "../../../Layouts/Account";
 import Card from "../../../Components/Card";
 import Delete from "../../../Components/Delete";
 import Pagination from "../../../Components/Pagination";
 import Button from "../../../Components/Button";
-import { FaImage, FaImages } from "react-icons/fa6";
-import Swal from "sweetalert2";
 import NoDataFound from "../../../Components/NoDataFound";
 
 export default function Show() {
@@ -51,7 +51,7 @@ export default function Show() {
                     title={
                         <>
                             <FaImage />
-                            Upload Product Image
+                            Upload Product Image: {product.product_name}
                         </>
                     }
                 >
@@ -87,96 +87,87 @@ export default function Show() {
                                 {errors.product_image_url}
                             </div>
                         )}
-                        <img id="frame" src="" className="mt-5 w-full mb-2" />
-                        <Button color={"success"}>Save</Button>
+                        <img id="frame" className="mt-5 w-1/2 mb-2" />
+                        <Button color="success">Save</Button>
                     </form>
                 </Card>
                 <Card
                     title={
                         <>
                             <FaImages />
-                            Product Images
+                            Product Images : {product.product_name}
                         </>
                     }
                 >
                     {product.product_images.data.length > 0 ? (
-                        <>
-                            <div className="relative overflow-x-auto">
-                                <table className="w-full text-sm text-left text-gray-500">
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
-                                        <tr>
-                                            <th
-                                                scope="col"
-                                                className="px-6 py-3"
-                                                style={{ width: "5%" }}
+                        <div className="relative overflow-x-auto">
+                            <table className="w-full text-sm text-left text-gray-500">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3"
+                                            style={{ width: "5%" }}
+                                        >
+                                            No
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
+                                            Product Image
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {product.product_images.data.map(
+                                        (image, index) => (
+                                            <tr
+                                                className="bg-white border-b "
+                                                key={index}
                                             >
-                                                No
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-6 py-3"
-                                            >
-                                                Product Image
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-6 py-3"
-                                            >
-                                                Actions
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {product.product_images.data.map(
-                                            (image, index) => (
-                                                <tr
-                                                    className="bg-white border-b "
-                                                    key={index}
+                                                <th
+                                                    scope="row"
+                                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                                                 >
-                                                    <th
-                                                        scope="row"
-                                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                                                    >
-                                                        {++index +
-                                                            (product
+                                                    {++index +
+                                                        (product.product_images
+                                                            .current_page -
+                                                            1) *
+                                                            product
                                                                 .product_images
-                                                                .current_page -
-                                                                1) *
-                                                                product
-                                                                    .product_images
-                                                                    .per_page}
-                                                    </th>
-                                                    <td className="px-6 py-4">
-                                                        <img
-                                                            src={
-                                                                image.product_image_url
-                                                            }
-                                                            alt={
-                                                                image.product_image_id
-                                                            }
-                                                        />
-                                                    </td>
-                                                    <td className="p-3 flex flex-row gap-1 max-md:flex-col items-center content-center">
-                                                        <Delete
-                                                            URL="/admin/products/destroy_image_product"
-                                                            id={
-                                                                image.product_image_id
-                                                            }
-                                                        />
-                                                    </td>
-                                                </tr>
-                                            )
-                                        )}
-                                    </tbody>
-                                </table>
-                                <Pagination
-                                    links={product.product_images.links}
-                                    align={"end"}
-                                />
-                            </div>
-                        </>
+                                                                .per_page}
+                                                </th>
+                                                <td className="px-6 py-4 w-1/2">
+                                                    <img
+                                                        src={
+                                                            image.product_image_url
+                                                        }
+                                                        alt={
+                                                            image.product_image_id
+                                                        }
+                                                    />
+                                                </td>
+                                                <td className="p-3 flex flex-row gap-1 max-md:flex-col items-center content-center">
+                                                    <Delete
+                                                        URL="/admin/products/destroy_image_product"
+                                                        id={
+                                                            image.product_image_id
+                                                        }
+                                                    />
+                                                </td>
+                                            </tr>
+                                        )
+                                    )}
+                                </tbody>
+                            </table>
+                            <Pagination
+                                links={product.product_images.links}
+                                align="end"
+                            />
+                        </div>
                     ) : (
-                        <NoDataFound data={"product images"} />
+                        <NoDataFound data="product images" />
                     )}
                 </Card>
             </LayoutAccount>

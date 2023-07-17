@@ -12,7 +12,7 @@ class DeliveryAreaController extends Controller
     public function index()
     {
         return Inertia::render('Admin/DeliveryAreas/Index', [
-            'delivery_areas' => DeliveryArea::latest()->paginate(10)
+            'deliveryAreas' => DeliveryArea::latest()->paginate(10)
         ]);
     }
 
@@ -34,7 +34,7 @@ class DeliveryAreaController extends Controller
     public function edit(DeliveryArea $deliveryArea)
     {
         return Inertia::render('Admin/DeliveryAreas/Edit', [
-            'delivery_area' => $deliveryArea
+            'deliveryArea' => $deliveryArea
         ]);
     }
 

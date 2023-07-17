@@ -1,5 +1,6 @@
 import React from "react";
 import { Head, Link, usePage } from "@inertiajs/react";
+import { FaBorderAll, FaPen, FaPlus } from "react-icons/fa6";
 import LayoutAccount from "../../../Layouts/Account";
 import Card from "../../../Components/Card";
 import SearchInput from "../../../Components/SearchInput";
@@ -7,7 +8,6 @@ import hasAnyPermission from "../../../Utils/Permissions";
 import Button from "../../../Components/Button";
 import Delete from "../../../Components/Delete";
 import Pagination from "../../../Components/Pagination";
-import { FaBorderAll, FaPen, FaPlus } from "react-icons/fa6";
 import NoDataFound from "../../../Components/NoDataFound";
 
 export default function Index() {
@@ -20,7 +20,10 @@ export default function Index() {
             <LayoutAccount>
                 <SearchInput URL="/admin/categories" />
                 <Link href="/admin/categories/create">
-                    <button className="btn btn-primary flex flex-row items-center justify-center gap-2 mt-2">
+                    <button
+                        type="button"
+                        className="btn btn-primary flex flex-row items-center justify-center gap-2 mt-2"
+                    >
                         <FaPlus /> Category
                     </button>
                 </Link>
@@ -49,12 +52,6 @@ export default function Index() {
                                                 Category Name
                                             </th>
                                             <th scope="col" className="p-2">
-                                                Category Slug
-                                            </th>
-                                            <th scope="col" className="p-2">
-                                                Category Description
-                                            </th>
-                                            <th scope="col" className="p-2">
                                                 Category Image
                                             </th>
                                             <th scope="col" className="p-2 ">
@@ -81,14 +78,7 @@ export default function Index() {
                                                     <td className="p-3">
                                                         {category.category_name}
                                                     </td>
-                                                    <td className="p-3">
-                                                        {category.category_slug}
-                                                    </td>
-                                                    <td className="p-3">
-                                                        {
-                                                            category.category_description
-                                                        }
-                                                    </td>
+
                                                     <td className="p-3">
                                                         <img
                                                             src={
@@ -107,11 +97,7 @@ export default function Index() {
                                                             <Link
                                                                 href={`/admin/categories/${category.category_id}/edit`}
                                                             >
-                                                                <Button
-                                                                    color={
-                                                                        "secondary"
-                                                                    }
-                                                                >
+                                                                <Button color="secondary">
                                                                     <FaPen />
                                                                 </Button>
                                                             </Link>
@@ -120,9 +106,7 @@ export default function Index() {
                                                             "categories.delete",
                                                         ]) && (
                                                             <Delete
-                                                                URL={
-                                                                    "/admin/categories"
-                                                                }
+                                                                URL="/admin/categories"
                                                                 id={
                                                                     category.category_id
                                                                 }
@@ -135,13 +119,10 @@ export default function Index() {
                                     </tbody>
                                 </table>
                             </div>
-                            <Pagination
-                                links={categories.links}
-                                align={"end"}
-                            />
+                            <Pagination links={categories.links} align="end" />
                         </>
                     ) : (
-                        <NoDataFound data={"category"} />
+                        <NoDataFound data="category" />
                     )}
                 </Card>
             </LayoutAccount>

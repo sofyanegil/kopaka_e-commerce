@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return Inertia::render('index');
-});
-
 // route register
 Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@index')->name('register')->middleware('guest');
 Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@store')->name('register.store')->middleware('guest');
@@ -85,3 +80,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('admin.dashboard');
     });
 });
+
+// route home
+Route::get('/', 'App\Http\Controllers\Web\HomeController')->name('web.home.index');
+
+// route category
+Route::get('/categories', 'App\Http\Controllers\Web\CategoryController@index')->name('web.categories.index');
+Route::get('/categories/{category:category_slug}', 'App\Http\Controllers\Web\CategoryController@show')->name('web.categories.show');
+
+// route product
+Route::get('/products', 'App\Http\Controllers\Web\ProductController@index')->name('web.products.index');
+Route::get('/products/{product:product_slug}', 'App\Http\Controllers\Web\ProductController@show')->name('web.products.show');

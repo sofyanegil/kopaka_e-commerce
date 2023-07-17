@@ -59,7 +59,7 @@ class ProductController extends Controller
                 'product_name' => 'required|unique:products',
                 'product_description' => 'required',
                 'product_weight' => 'required',
-                'product_variants' => 'required|array|min:2',
+                'product_variants' => 'required|array|min:1|nullable',
                 'product_variants.*.product_variant_name' => 'required',
                 'product_variants.*.product_variant_price' => 'required',
             ]
@@ -108,7 +108,7 @@ class ProductController extends Controller
                 'product_name' => 'required|unique:products,product_name,' . $product->product_id . ',product_id',
                 'product_description' => 'required',
                 'product_weight' => 'required',
-                'product_variants' => 'required|array|min:2',
+                'product_variants' => 'required|array|min:1|nullable',
                 'product_variants.*.product_variant_name' => 'required',
                 'product_variants.*.product_variant_price' => 'required',
             ]

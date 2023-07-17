@@ -22,7 +22,6 @@ class SliderController extends Controller
     {
         $this->validate($request, [
             'slider_image_url' => 'required|mimes:jpeg,png,jpg|max:2048',
-            'slider_link' => 'required',
         ], [
             'slider_image_url.required' => 'Image is required',
             'slider_image_url.mimes' => 'Image must be a file of type: jpg, jpeg or png.',
@@ -34,7 +33,6 @@ class SliderController extends Controller
 
         Slider::create([
             'slider_image_url' => $slider_image_url->hashName(),
-            'slider_link' => $request->slider_link
         ]);
 
         return redirect()->route('admin.sliders.index');

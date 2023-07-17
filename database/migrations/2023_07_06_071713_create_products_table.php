@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('category_id')->references('category_id')->on('categories')->cascadeOnDelete();
             $table->string('product_name');
             $table->string('product_slug');
-            $table->string('product_description');
+            $table->text('product_description');
             $table->string('product_weight');
             $table->timestamps();
         });

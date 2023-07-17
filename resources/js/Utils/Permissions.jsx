@@ -1,17 +1,16 @@
-import React from "react";
-import { usePage } from "@inertiajs/react";
+import { usePage } from '@inertiajs/react';
 
 export default function hasAnyPermission(permissions) {
-    // destruct auth from props
-    const { auth } = usePage().props;
+  // destruct auth from props
+  const { auth } = usePage().props;
 
-    // get all permissions from props
-    let allPermissions = auth.permissions;
+  // get all permissions from props
+  const allPermissions = auth.permissions;
 
-    let hasPermission = false;
+  let hasPermission = false;
 
-    permissions.forEach(function (item, _) {
-        if (allPermissions[item]) hasPermission = true;
-    });
-    return hasPermission;
+  permissions.forEach((item) => {
+    if (allPermissions[item]) hasPermission = true;
+  });
+  return hasPermission;
 }
