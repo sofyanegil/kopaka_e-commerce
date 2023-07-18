@@ -11,8 +11,13 @@ class DeliveryAreaController extends Controller
 {
     public function index()
     {
+        $deliveryAreas = DeliveryArea::when(request()->q, function ($deliveryArea) {
+            $deliveryArea = $deliveryArea->where('delivery_area_name', 'like', '%' . request()->q . '%');
+        })->latest()->paginate(10);
+
+        $deliveryAreas->appends(['q' => request()->q]);
         return Inertia::render('Admin/DeliveryAreas/Index', [
-            'deliveryAreas' => DeliveryArea::latest()->paginate(10)
+            'deliveryAreas' => $deliveryAreas
         ]);
     }
 

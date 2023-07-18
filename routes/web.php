@@ -91,3 +91,18 @@ Route::get('/categories/{category:category_slug}', 'App\Http\Controllers\Web\Cat
 // route product
 Route::get('/products', 'App\Http\Controllers\Web\ProductController@index')->name('web.products.index');
 Route::get('/products/{product:product_slug}', 'App\Http\Controllers\Web\ProductController@show')->name('web.products.show');
+
+// route cart
+Route::get('/carts', 'App\Http\Controllers\Web\CartController@index')->name('web.carts.index')->middleware('auth');
+// add to cart
+Route::post('/carts', 'App\Http\Controllers\Web\CartController@store')->name('web.carts.store')->middleware('auth');
+// delete cart
+Route::delete('/carts/{id}', 'App\Http\Controllers\Web\CartController@destroy')->name('web.carts.destroy')->middleware('auth');
+
+// route checkout
+Route::get('/checkout', 'App\Http\Controllers\Web\CheckoutController@index')->name('web.checkout.index')->middleware('auth');
+Route::post('/checkouts', [\App\Http\Controllers\Web\CheckoutController::class, 'store'])->name('web.checkouts.store')
+    ->middleware('auth');
+
+// route callback
+Route::post('/callback', \App\Http\Controllers\Web\CallbackController::class)->name('web.callback');
