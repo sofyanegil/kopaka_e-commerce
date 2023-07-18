@@ -1,14 +1,16 @@
 import { Head, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 import ImageGallery from "react-image-gallery";
-import { FaCartPlus } from "react-icons/fa6";
 import LayoutWeb from "../../../Layouts/Web";
 import formatPrice from "../../../Utils/FormatPrice";
 import "react-image-gallery/styles/css/image-gallery.css";
+import AddToCart from "./AddToCart";
 
 export default function Show() {
     const { product } = usePage().props;
-    const [variantId, setVariantId] = useState();
+    const [variantId, setVariantId] = useState(
+        product.product_variants[0].product_variant_id
+    );
     const [price, setPrice] = useState(
         product.product_variants[0].product_variant_price
     );
@@ -40,6 +42,12 @@ export default function Show() {
 
     const handleIncrease = () => {
         setQty(qty + 1);
+    };
+
+    const refreshData = () => {
+        setPrice(product.product_variants[0].product_variant_price);
+        setVariantId(product.product_variants[0].product_variant_id);
+        setQty(1);
     };
 
     return (
@@ -124,7 +132,7 @@ export default function Show() {
                                     </label>
                                     <div className="flex items-center">
                                         <button
-                                            className="px-2 py-1 bg-gray-200 text-gray-700 rounded-l focus:outline-none btn"
+                                            className="btn btn-secondary -mr-1.5 z-10"
                                             onClick={handleDecrease}
                                         >
                                             -
@@ -134,7 +142,7 @@ export default function Show() {
                                             type="number"
                                             id="qty"
                                             min={1}
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm font-bold  focus:ring-blue-500 focus:border-blue-500 block w-full p-2 text-center"
+                                            className="bg-gray-50 text-gray-900 text-sm font-bold  focus:ring-blue-500 focus:border-blue-500 block py-2.5 text-center w-1/5 z-20"
                                             placeholder=""
                                             required
                                             value={qty}
@@ -143,7 +151,7 @@ export default function Show() {
                                             }
                                         />
                                         <button
-                                            className="px-2 py-1 bg-gray-200 text-gray-700 rounded-r focus:outline-none btn  rounded-none"
+                                            className="btn btn-secondary -ml-1.5 z-10 font-black text-3xl"
                                             onClick={handleIncrease}
                                         >
                                             +
@@ -151,15 +159,12 @@ export default function Show() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="justify-content-center fixed-bottom">
-                                <button
-                                    type="button"
-                                    className="text-white bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center inline-flex items-center mr-2 gap-2 justify-center w-full"
-                                >
-                                    <FaCartPlus className="w-5 h-5" />
-                                    Add to cart
-                                </button>
-                            </div>
+                            <AddToCart
+                                product_id={product.product_id}
+                                product_variant_id={variantId}
+                                qty={qty}
+                                onCartAdded={refreshData}
+                            />
                         </div>
                     </div>
                 </div>

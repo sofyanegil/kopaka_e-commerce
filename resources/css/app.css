@@ -2,7 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -16,24 +15,24 @@ input[type="number"] {
 }
 
 .btn {
-    @apply font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+    @apply font-medium rounded-lg text-sm px-5 py-2.5;
 }
 .btn-primary {
-    @apply text-white bg-orange-500 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300;
+    @apply focus:outline-none text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300;
 }
 
 .btn-secondary {
-    @apply text-gray-900 bg-slate-100 hover:bg-slate-200 focus:ring-4 focus:outline-none focus:ring-blue-300;
+    @apply focus:outline-none text-black bg-slate-300 hover:bg-slate-400 focus:ring-4 focus:ring-slate-200;
 }
 
 .btn-danger {
-    @apply text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300;
+    @apply focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300;
 }
 
 .btn-success {
-    @apply text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300;
+    @apply focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300;
 }
 
 .btn-warning {
-    @apply text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300;
+    @apply focus:outline-none text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:ring-yellow-300;
 }

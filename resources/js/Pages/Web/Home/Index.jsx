@@ -31,16 +31,16 @@ export default function Index() {
                                     href={`/categories/${category.category_slug}`}
                                 >
                                     <img
-                                        className="rounded-t-lg h-60 w-full"
+                                        className="rounded-t-lg h-60 w-full object-cover"
                                         src={category.category_image_url}
                                         alt="x"
                                     />
                                 </a>
-                                <div className="p-5">
+                                <div className="p-2">
                                     <a
                                         href={`/categories/${category.category_slug}`}
                                     >
-                                        <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 btn btn-primary ">
+                                        <h5 className="btn btn-primary text-center">
                                             {category.category_name}
                                         </h5>
                                     </a>
