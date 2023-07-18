@@ -1,16 +1,18 @@
-import React from 'react';
-import { FaRegCircleXmark } from 'react-icons/fa6';
+import React from "react";
 
 export default function NoDataFound({ data }) {
-  return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
-      <FaRegCircleXmark className="text-6xl text-gray-400" />
-      <p className="text-gray-400">
-        No data
-        {data}
-        {' '}
-        found
-      </p>
-    </div>
-  );
+    return (
+        <div className="flex flex-col items-center justify-center w-full h-full">
+            <div className="flex justify-center items-center flex-col">
+                <img
+                    src="/assets/images/not-found.png"
+                    alt="empty-cart"
+                    className="w-[30vh] my-10 "
+                />
+                <h3 className="text-xl font-semibold text-center">
+                    No data {data} found
+                </h3>
+            </div>
+        </div>
+    );
 }

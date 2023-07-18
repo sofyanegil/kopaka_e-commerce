@@ -10,7 +10,7 @@ import Button from "./Button";
 export default function Header() {
     const {
         url,
-        props: { auth },
+        props: { auth, dataCarts },
     } = usePage();
 
     return (
@@ -30,16 +30,23 @@ export default function Header() {
                                 <FaMagnifyingGlass />
                             </span>
                         </a>
-                        <a href="/cart">
-                            <span className="w-5 h-5 text-2xl max-sm:text-xl">
-                                <FaCartShopping />
-                            </span>
+                        <a href="/carts">
+                            <div className="relative">
+                                <span className="w-5 h-5 text-2xl max-sm:text-xl">
+                                    <FaCartShopping />
+                                </span>
+                                {dataCarts && (
+                                    <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-orange-500 text-white font-bold rounded-full px-2 py-1 text-xs">
+                                        {dataCarts.total}
+                                    </span>
+                                )}
+                            </div>
                         </a>
                         {auth.user ? (
                             <>
                                 <button
                                     type="button"
-                                    className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
+                                    className="flex ml-2 mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
                                     id="user-menu-button"
                                     aria-expanded="false"
                                     data-dropdown-toggle="user-dropdown"
