@@ -33,19 +33,18 @@ class CheckoutController extends Controller
         $duitkuConfig->setDuitkuLogs(false);
 
         $this->validate($request, [
-            'order_type' => 'required',
-            'delivery_phone' => 'required|digits_between:10,13|numeric',
+            'order_type' => 'required | in:DELIVERY,PICKUP',
+            'delivery_phone' => 'required|numeric',
             'delivery_date' => 'required',
             'delivery_address' => $request->order_type === 'DELIVERY' ? 'required' : '',
         ]);
 
         DB::transaction(function () use ($duitkuConfig, $request) {
             $orderType = $request->order_type;
-            $orderNumber = 'ORD-' . date('ymdhi') . '-' . rand(1, 100);
+            $orderNumber = 'ORD-' . date('ymd', strtotime($request->delivery_date)) . '-' . rand(1, 100);
             $customerDetail = [
                 'firstName' => auth()->user()->user_name,
                 'phoneNumber' => $request->delivery_phone,
-                'email' => auth()->user()->user_email,
             ];
             $paymentAmount = $request->grand_total;
 
@@ -98,17 +97,18 @@ class CheckoutController extends Controller
                 $productVariant = ProductVariant::findOrFail($cart->product_variant_id);
                 $itemDetails[] = [
                     'name' => $cart->product->product_name . ' - ' . $productVariant->product_variant_name,
-                    'price' => $productVariant->product_variant_price,
+                    'price' => $cart->total_price,
                     'quantity' => $cart->product_quantity,
                 ];
             }
 
             if ($orderType === 'DELIVERY') {
-                $itemDetails[] = [
+                $deliveryCost = array(
                     'name' => 'Shipping Cost',
                     'price' => $request->delivery_cost,
                     'quantity' => 1,
-                ];
+                );
+                array_push($itemDetails, $deliveryCost);
             }
 
             Cart::where('user_id', auth()->user()->id)->delete();
@@ -116,12 +116,13 @@ class CheckoutController extends Controller
             $productDetails = "Pembayaran untuk Order: " . $orderNumber;
             $callbackUrl = config('app.url') . '/callback';
             $returnUrl = config('app.url') . '/account/orders/' . $orderNumber;
-            $expiryPeriod = 1440;
+            $expiryPeriod = 60;
 
             $payload = [
                 'paymentAmount' => $paymentAmount,
                 'merchantOrderId' => $orderNumber,
                 'productDetails' => $productDetails,
+                'email'         => auth()->user()->user_email,
                 'customerVaName' => auth()->user()->user_name,
                 'itemDetails' => $itemDetails,
                 'customerDetail' => $customerDetail,

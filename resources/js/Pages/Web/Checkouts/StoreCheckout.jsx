@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 export default function StoreCheckout({
     deliveryAreaId,
     storeId,
-    deliveryData,
+    deliveryDate,
     deliveryPhone,
     orderNote,
     orderType,
@@ -14,13 +14,13 @@ export default function StoreCheckout({
 }) {
     const { dataCarts } = usePage().props;
     //method checkout
-    const storeCheckout = () => {
+    const checkoutHandler = () => {
         router.post(
             "/checkouts",
             {
                 delivery_area_id: deliveryAreaId,
                 store_id: storeId,
-                delivery_date: deliveryData,
+                delivery_date: deliveryDate,
                 delivery_phone: deliveryPhone,
                 order_note: orderNote,
                 order_type: orderType,
@@ -46,7 +46,7 @@ export default function StoreCheckout({
     return (
         <>
             <button
-                onClick={storeCheckout}
+                onClick={checkoutHandler}
                 className="btn btn-success btn-md border-0 shadow rounded-3 w-100 mb-5"
                 disabled={dataCarts.total == 0}
             >

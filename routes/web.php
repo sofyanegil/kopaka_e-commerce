@@ -106,3 +106,9 @@ Route::post('/checkouts', [\App\Http\Controllers\Web\CheckoutController::class, 
 
 // route callback
 Route::post('/callback', \App\Http\Controllers\Web\CallbackController::class)->name('web.callback');
+
+// route search
+Route::post('/search', \App\Http\Controllers\Web\SearchController::class)->name('web.search.index');
+
+// route store location
+Route::get('/stores', 'App\Http\Controllers\Web\StoreLocationController@index')->name('web.stores.index');

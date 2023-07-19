@@ -111,7 +111,7 @@ export default function edit() {
                                 Birthday
                             </label>
                             <div className="relative max-w-sm">
-                                <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none z-50">
+                                <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none z-10">
                                     <FaCalendar />
                                 </div>
                                 <DatePicker

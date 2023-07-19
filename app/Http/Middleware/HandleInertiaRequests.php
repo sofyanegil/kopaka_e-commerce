@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
             //carts
             'dataCarts' => $request->user() ? [
                 'total'     =>  \App\Models\Cart::where('user_id', $request->user()->id)->count() ?? 0,
-                'price'     => (float) \App\Models\Cart::where('user_id', $request->user()->id)->sum('total_price') ?? 0,
+                'price'     => (int) \App\Models\Cart::where('user_id', $request->user()->id)->sum('total_price') ?? 0,
             ] : null
         ]);
     }

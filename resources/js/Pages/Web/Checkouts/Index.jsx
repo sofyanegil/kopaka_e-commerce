@@ -36,8 +36,7 @@ export default function Index() {
                 ? selectedDeliveryArea.delivery_area_price
                 : 0;
             setDeliveryCost(cost);
-
-            setGrandTotal(dataCarts.price + deliveryCost);
+            setGrandTotal(dataCarts.price + cost);
         } else {
             setGrandTotal(dataCarts.price);
             setDeliveryCost(0);
@@ -101,7 +100,7 @@ export default function Index() {
                                         Delivery Date
                                     </label>
                                     <div className="relative max-w-sm">
-                                        <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none z-50">
+                                        <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none z-10">
                                             <FaCalendar />
                                         </div>
                                         <DatePicker
@@ -319,7 +318,7 @@ export default function Index() {
                                 <StoreCheckout
                                     deliveryAreaId={deliveryAreaId}
                                     storeId={storeLocationId}
-                                    deliveryData={deliveryDate}
+                                    deliveryDate={deliveryDate}
                                     deliveryPhone={phone}
                                     orderNote={note}
                                     orderType={orderType}
