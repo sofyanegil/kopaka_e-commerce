@@ -1,6 +1,7 @@
 import React from "react";
 import { router, usePage } from "@inertiajs/react";
 import Swal from "sweetalert2";
+import { FaMoneyCheck } from "react-icons/fa6";
 
 export default function StoreCheckout({
     deliveryAreaId,
@@ -47,10 +48,10 @@ export default function StoreCheckout({
         <>
             <button
                 onClick={checkoutHandler}
-                className="btn btn-success btn-md border-0 shadow rounded-3 w-100 mb-5"
+                className="btn btn-primary border-0 shadow rounded-3 w-100 mb-5 flex items-center justify-center gap-2"
                 disabled={dataCarts.total == 0}
             >
-                BAYAR SEKARANG
+                <FaMoneyCheck /> PAY NOW
             </button>
         </>
     );
