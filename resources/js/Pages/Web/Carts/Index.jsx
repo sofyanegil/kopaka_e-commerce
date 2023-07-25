@@ -129,7 +129,7 @@ export default function Index() {
                                         <a href="/checkout">
                                             <button className="btn btn-primary flex items-center gap-2">
                                                 <FaMoneyBill />
-                                                Checkout
+                                                CHECKOUT
                                             </button>
                                         </a>
                                     </Card>

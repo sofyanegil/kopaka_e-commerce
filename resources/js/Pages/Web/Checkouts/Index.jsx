@@ -267,10 +267,7 @@ export default function Index() {
                             </Card>
                         </div>
                         <div className="col-span-1 md:col-span-2">
-                            <Card>
-                                <h3 className="text-xl font-semibold text-center">
-                                    Summary
-                                </h3>
+                            <Card title={"Summary"}>
                                 <div className="flex justify-between items-center">
                                     <p className="text-gray-500 text-sm mb-2">
                                         Total Items
